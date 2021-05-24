@@ -1,0 +1,222 @@
+# Descriptive statistics
+
+```{r message=F,warning=F}
+library(psych)
+library(haven)
+library(tidyverse)
+library(labelled)
+library(brms)
+library(Hmisc)
+library(table1)
+set.seed(3103)
+```
+
+## Importing and preparing the data
+
+
+```{r}
+d <- haven::read_sav("data/original/Users Germany.sav")
+```
+
+Selecting only the variables of interest
+
+```{r}
+d1 <- d %>% 
+  select(
+         first_operator=anbiet1,
+         age = v29,
+         gender = v28,
+         income = v32,
+         education = v30,
+         frequency_modes = v08_10, #private car
+         public_transport = v05, #transport public ticket
+         frequency_modes_before_cs = v17_20, #private car
+         n_cars_no_cs = v18,
+         city = ort,
+         n_cars = v03,
+         children = v02_1,
+         household_size = v01)
+```
+
+Basic transformations
+
+Let's convert everything to numeric (to get rid of the labels from SPSS).
+
+Then we recode the answers so we have more descriptive labels for the table.
+```{r}
+d2 <- as.data.frame(sapply(d1, as.numeric))
+#gender
+d2$gender<-as.character(d2$gender)
+d2$gender <- dplyr::recode(d2$gender, 
+                 '1'='Male',
+                 '2'='Female',
+                 '3'='Other')
+d2$gender <- as.factor(d2$gender)
+#age
+d2$age <- 2019 - d2$age
+d2$age_c <- scale(d2$age)
+
+#income
+d2$income <- na_if(d2$income, 9)
+d2$income <- as.character(d2$income)
+income_order <-c('< 1000',
+                 '1000 to 2000',
+                 '2000 to 3000',
+                 '3000 to 4000',
+                 '4000 to 5000',
+                 '> 5000')
+d2$income <- dplyr::recode(d2$income, 
+                 '1'='< 1000',
+                 '2'='1000 to 2000',
+                 '3'='2000 to 3000',
+                 '4'='3000 to 4000',
+                 '5'='4000 to 5000',
+                 '6'='> 5000')
+d2$income <- factor(d2$income, levels = income_order, ordered = T)
+
+#first operator
+d2$first_operator <- na_if(d2$first_operator, 9)#no information
+d2$first_operator <- na_if(d2$first_operator, 10) #drivenow
+d2$first_operator <- na_if(d2$first_operator, 11) #flinkster
+d2$first_operator <- na_if(d2$first_operator, 99) #other
+d2$first_operator <- as.character(d2$first_operator)
+d2$first_operator <- dplyr::recode(d2$first_operator, 
+                 '1'='COMB', #book n drive     
+                 '2'='RTSB_B', #stadmobil,
+                 '3'='RTSB_A',#cambio
+                 '4'='RTSB_B', #stadmobil
+                 '5'='FF', #car2go
+                 '6'='P2P' #drivy
+                 )
+d2$first_operator <- factor(d2$first_operator, ordered = FALSE)
+d2$first_operator <- as.factor(d2$first_operator)
+
+#education
+d2$education <- na_if(d2$education, 9)
+d2$education <- as.character(d2$education)
+education_order <-c('Secondary school 1',
+                 'Secondary school 2',
+                 'High school',
+                 'University')
+d2$education <- dplyr::recode(d2$education, 
+                 '1'='Secondary school 1',
+                 '2'='Secondary school 2',
+                 '3'='High school',
+                 '4'='University')
+d2$education <- factor(d2$education, levels = education_order, ordered = T)
+
+d2$public_transport <- as.character(d2$public_transport) 
+d2$public_transport <-  dplyr::recode(d2$public_transport, 
+                 '1'='Yes',   
+                 '2'='No')
+
+d2$city <- as.character(d2$city) 
+d2$city <-  dplyr::recode(d2$city, 
+                 '1'='Frankfurt',   
+                 '2'='Köln',
+                 '3'='Stuttgart',
+                 '4'='Others')
+
+d2$n_cars <- as.character(d2$n_cars)
+d2$n_cars <- dplyr::recode(d2$n_cars, 
+                 '1'='One car',
+                 '2'='Two cars',
+                 '3'='Three or more cars',
+                 '4'='No car')
+n_car_order <-c('No car',
+                 'One car',
+                 'Two cars',
+                 'Three or more cars')
+d2$n_cars <- factor(d2$n_cars, levels = n_car_order, ordered = T)
+
+
+
+d2$n_cars_no_cs <- as.character(d2$n_cars_no_cs)
+d2$n_cars_no_cs <- dplyr::recode(d2$n_cars_no_cs, 
+                 '1'='One car',
+                 '2'='Two cars',
+                 '3'='Three or more cars',
+                 '4'='No car',
+                 '5'='Do not know')
+n_cars_no_cs_order <-c('No car',
+                 'One car',
+                 'Two cars',
+                 'Three or more cars',
+                 'Do not know')
+
+d2$n_cars_no_cs <- factor(d2$n_cars_no_cs, levels = n_cars_no_cs_order, ordered = T)
+
+d2$children <- as.character(d2$children) 
+d2$children <-  dplyr::recode(d2$children, 
+                 '0'='Yes',   
+                 '1'='No')
+
+
+d2$household_size <- as.character(d2$household_size)
+d2$household_size <- dplyr::recode(d2$household_size, 
+                 '1'='1',
+                 '2'='2',
+                 '3'='3',
+                 '4'='4',
+                 '5'='> 5')
+household_size_order <-c('1','2','3','4','> 5')
+d2$household_size <- factor(d2$household_size, levels = household_size_order, ordered = T)
+
+d2$frequency_modes <- as.character(d2$frequency_modes)
+d2$frequency_modes <- dplyr::recode(d2$frequency_modes, 
+                 '1'='Daily',
+                 '2'='4-6 days a week',
+                 '3'='1-3 days a week',
+                 '4'='Do not know')
+frequency_modes_order <-c('Daily','4-6 days a week','1-3 days a week','Do not know')
+d2$frequency_modes <- factor(d2$frequency_modes, levels = frequency_modes_order, ordered = T)
+
+
+d2$frequency_modes_before_cs <- as.character(d2$frequency_modes_before_cs)
+d2$frequency_modes_before_cs <- dplyr::recode(d2$frequency_modes_before_cs, 
+                 '1'='Less often than today',
+                 '2'='About as often as today',
+                 '3'='More often than today',
+                 '4'='Less frequently',
+                 '5'='Never')
+frequency_modes_before_cs_order <-c('Daily','4-6 days a week','1-3 days a week','Less frequently','Never')
+d2$frequency_modes_before_cs <- factor(d2$frequency_modes_before_cs, levels = frequency_modes_before_cs_order, ordered = T)
+
+```
+
+
+## Descriptive statistics table
+
+Now let's create a table of with the descriptive statistics.
+
+```{r cache=F}
+table1::label(d2$city) <-  "City"
+table1::label(d2$age) <- "Age" 
+table1::label(d2$gender) <- "Gender"
+table1::label(d2$education) <- "Education"
+table1::label(d2$income) <- "Household income before taxes (euro)"
+table1::label(d2$household_size) <- "Household (number of persons cohabiting)"
+table1::label(d2$children) <- "Presence of children in the household"
+table1::label(d2$n_cars) <-  "Current number of cars in the household with carsharing membership"
+table1::label(d2$n_cars_no_cs) <- "Expected number of cars in the household without carsharing membership"
+table1::label(d2$frequency_modes) <- "Frequency of use of private car"
+table1::label(d2$public_transport) <- "Ownership of monthly PT ticket"
+table1::label(d2$first_operator) <- "Main carsharing operator"
+```
+
+```{r}
+table1::table1(~ city+age+gender+education+income+household_size+children, data=d2,caption="Socio-demographic descriptive statistics of the sample") %>% t1kable()
+```
+```{r}
+table1::table1(~ n_cars+n_cars_no_cs+frequency_modes+public_transport | first_operator, data=d2,caption="Descriptive statistics of private car use across carsharing business models") %>% t1kable()
+```
+
+## Tables for the paper
+
+```{r echo=T, results='hide'}
+table1::table1(~ city+age+gender+education+income+household_size+children, data=d2,caption="Socio-demographic descriptive statistics of the sample") %>% t1kable(booktabs = T,format = 'latex', label='descriptive-socio')
+```
+
+```{r echo=T, results='hide'}
+table1::table1(~ n_cars+n_cars_no_cs+frequency_modes+public_transport|first_operator, data=d2,caption="Descriptive statistics of private car use across carsharing business models") %>% t1kable(booktabs = T,format = 'latex', label='descriptive-car')
+```

@@ -1,0 +1,978 @@
+# Psychological predictors of carsharing per business model
+
+```{r}
+library(psych)
+library(haven)
+library(tidyverse)
+library(labelled)
+library(brms)
+library(knitr)
+set.seed(3103)
+```
+
+
+## Importing the data
+
+```{r}
+d <- haven::read_sav("data/original/Users Germany.sav")
+```
+
+Selecting the relevant variables for this analysis.
+
+```{r echo=F}
+d1 <- d %>% 
+  select(
+    #dv
+    freq_car2go=v19ff_10,
+    freq_bookndrive=v19ff_20,
+    freq_stadtmobil=v19ff_30,
+    # freq_flinkster=v19ff_40,
+    freq_drivy_or_snappcar=v19ff_50,
+    freq_car2go_or_drivenow=v19k_10,
+    freq_cambio=v19k_20,
+    # freq_flinkster2=v19k_30,
+    freq_drivy_or_snappcar2=v19k_40,
+    freq_car2go2=v19s_10,
+    freq_stadtmobil2=v19s_20,
+    # freq_flinkster3=v19s_30,
+    freq_drivy_or_snappcar3=v19s_40,
+    #habits
+    habit_q1=v07_10,
+    habit_q2=v07_20,
+    habit_q3=v07_30,
+    habit_q4=v07_40,
+    habit_q5=v07_50,
+    habit_q6=v07_60,
+    habit_q7=v07_70,
+    habit_q8=v07_80,
+    #climate morality
+    climate_q1=v34_10,
+    climate_q2=v34_20,
+    climate_q3=v35_10,
+    climate_q4=v35_20,
+    climate_q5=v35_30,
+    #subjective norms
+    subj_q1=v36_20,
+    subj_q2=v36_30,
+    subj_q3=v36_40,
+    #trust
+    trust_q1=v26_10,
+    trust_q2=v26_20,
+    trust_q3=v26_30,
+    #control
+    control_q1=v25_10,
+    control_q2=v25_20,
+    control_q3=v25_30,
+    control_q4=v25_40,
+    control_q5=v25_50,
+    control_q6=v25_60,
+    #age
+    age = v29,
+    #gender
+    gender = v28,
+    #income
+    income = v32,
+    #education
+    education = v30
+    )  %>% 
+  #here we are coalescing (merging in a single column where we have null and keeping the first value if there are more than one for the same row)
+  mutate(FF = coalesce(freq_car2go, freq_car2go_or_drivenow,freq_car2go2),
+         RTSB_B = coalesce(freq_stadtmobil, freq_stadtmobil2),
+         COMB = freq_bookndrive,
+         RTSB_A = freq_cambio,
+         P2P = coalesce(freq_drivy_or_snappcar, freq_drivy_or_snappcar2, freq_drivy_or_snappcar3)) %>% 
+  select(-starts_with('freq_'))
+
+```
+
+Let's convert everything to numeric to get rid of the labels and process some of the other variables
+```{r}
+d2 <- as.data.frame(sapply(d1, as.numeric))
+#gender
+d2$gender <- na_if(d2$gender, 3)#there are only 3 cases of other
+d2$gender<-as.character(d2$gender)
+d2$gender <- dplyr::recode(d2$gender, 
+                 '1'='Male',
+                 '2'='Female',
+                 '3'='Other')
+d2$gender <- as.factor(d2$gender)
+#age
+d2$age <- 2019 - d2$age
+d2$age_c <- scale(d2$age)
+
+#income
+d2$income <- na_if(d2$income, 9)
+d2$income <- as.character(d2$income)
+income_order <-c('less_1000',
+                 '1000_to_2000',
+                 '2000_to_3000',
+                 '3000_to_4000',
+                 '4000_to_5000',
+                 'greater_5000')
+d2$income <- dplyr::recode(d2$income, 
+                 '1'='less_1000',
+                 '2'='1000_to_2000',
+                 '3'='2000_to_3000',
+                 '4'='3000_to_4000',
+                 '5'='4000_to_5000',
+                 '6'='greater_5000')
+d2$income <- factor(d2$income, levels = income_order, ordered = T)
+
+#education
+d2$education <- na_if(d2$education, 9)
+d2$education <- as.character(d2$education)
+education_order <-c('SecondarySchool_1',
+                 'SecondarySchool_2',
+                 'Highschool',
+                 'University')
+d2$education <- dplyr::recode(d2$education, 
+                 '1'='SecondarySchool_1',
+                 '2'='SecondarySchool_2',
+                 '3'='Highschool',
+                 '4'='University')
+d2$education <- factor(d2$education, levels = education_order, ordered = T)
+
+```
+
+Finally let's consider only the complete cases in the predictors
+
+```{r}
+dropna_cols <-c(
+  #habits
+  'habit_q1',
+  'habit_q2',
+  'habit_q3',
+  'habit_q4',
+  'habit_q5',
+  'habit_q6',
+  'habit_q7',
+  'habit_q8',
+  #climate morality
+  'climate_q1',
+  'climate_q2',
+  'climate_q3',
+  'climate_q4',
+  'climate_q5',
+  #subjective norms
+  'subj_q1',
+  'subj_q2',
+  'subj_q3',
+  #trust
+  'trust_q1',
+  'trust_q2',
+  'trust_q3',
+  #control
+  'control_q1',
+  'control_q2',
+  'control_q3',
+  'control_q4',
+  'control_q5',
+  'control_q6',
+  #others
+  'age_c',
+  'income',
+  'education',
+  'gender'
+)
+
+d3 <- tidyr::drop_na(d2, tidyselect::any_of(dropna_cols))
+```
+
+We moved from 1121 cases to 762 cases when selecting only complete cases there.
+
+
+## Factor analysis
+
+To do a factor analysis with ordinal values we need to do a polychoric factor analysis or a non-linear FA. In this case we will do a polychoric factor analysis
+
+### Habits
+
+```{r}
+habits <- d3 %>%
+  select(starts_with('habit'))
+```
+
+Getting the scree plot
+
+```{r cache=T}
+#Getting the polychoric correlation
+habits_poly_cor <- polychoric(habits)
+fa.parallel(habits, fa='fa', cor='poly')
+habits_model = fa(habits, nfactor=1, cor="poly", fm="mle", rotate = "none")
+```
+
+Showing the loadings of the factor analysis
+```{r}
+print(habits_model)
+```
+
+
+### Climate
+
+```{r}
+climate <- d3 %>%
+  select(starts_with('climate'))
+```
+
+Getting the scree plot
+
+```{r cache=T}
+#Getting the polychoric correlation
+climate_poly_cor <- polychoric(climate)
+fa.parallel(climate, fa='fa', cor='poly')
+climate_model = fa(climate, nfactor=1, cor="poly", fm="mle", rotate = "none")
+```
+
+Showing the loadings of the factor analysis
+```{r}
+print(climate_model)
+```
+
+
+### Subjective norms
+
+```{r}
+subj <- d3 %>%
+  select(starts_with('subj'))
+```
+
+Getting the scree plot
+
+```{r cache=T}
+#Getting the polychoric correlation
+subj_poly_cor <- polychoric(subj)
+fa.parallel(subj, fa='fa', cor='poly')
+subj_model = fa(subj, nfactor=1, cor="poly", fm="mle", rotate = "none")
+```
+
+Showing the loadings of the factor analysis
+```{r}
+print(subj_model)
+```
+
+
+### Trust
+
+```{r}
+trust <- d3 %>%
+  select(starts_with('trust'))
+```
+
+Getting the scree plot
+
+```{r cache=T}
+#Getting the polychoric correlation
+trust_poly_cor <- polychoric(trust)
+fa.parallel(trust, fa='fa', cor='poly')
+trust_model = fa(trust, nfactor=1, cor="poly", fm="mle", rotate = "none")
+```
+
+
+Showing the loadings of the factor analysis
+```{r}
+print(trust_model)
+```
+
+
+### Control
+
+```{r}
+control <- d3 %>%
+  select(starts_with('control'))
+```
+
+Getting the scree plot
+
+```{r cache=T}
+#Getting the polychoric correlation
+control_poly_cor <- polychoric(control)
+fa.parallel(control, fa='fa', cor='poly')
+control_model = fa(control, nfactor=1, cor="poly", fm="mle", rotate = "none")
+```
+
+Showing the loadings of the factor analysis
+```{r}
+print(control_model)
+```
+
+
+### Table for the Lambda's
+
+```{r warning=F,message=F}
+habits_lambda <- psych::guttman(habits_poly_cor$rho)
+climate_lambda <- psych::guttman(climate_poly_cor$rho)
+subj_lambda <- psych::guttman(subj_poly_cor$rho)
+trust_lambda <- psych::guttman(trust_poly_cor$rho)
+control_lambda <- psych::guttman(control_poly_cor$rho)
+lambda <- data.frame(Lambda=c("Chronbach's Alpha (Lambda 3)", "Lambda 4"),
+                     Habits = c(habits_lambda$lambda.3, habits_lambda$lambda.4),
+                     Climate = c(climate_lambda$lambda.3, climate_lambda$lambda.4),
+                     "Subjective" = c(subj_lambda$lambda.3, subj_lambda$lambda.4),
+                     Trust = c(trust_lambda$lambda.3, trust_lambda$lambda.4),
+                     Control = c(control_lambda$lambda.3, control_lambda$lambda.4))
+```
+
+```{r}
+lambda %>% kable(caption="Values of the Lambda 3 and Lambda 4 of Guttman for the psychological predictors",
+                 digits = 2,
+                 format='html',
+                 booktabs=T,
+                 label="rq4-lambda")
+```
+
+```{r echo=F, results='hide'}
+lambda %>% kable(caption="Values of the Lambda 3 and Lambda 4 of Guttman for the psychological predictors",
+                 digits = 2,
+                 format='latex',
+                 booktabs=T,
+                 label="rq4-lambda")
+```
+
+
+### Adding the FA scores to data frame
+
+Now we need to add to the data frame the actual scores obtained by the FA
+```{r}
+add_scores_to_df <- function(df, fa_model,name){
+  scores<- as.data.frame(fa_model$scores)
+  n <- ncol(scores)
+  names_col<-NULL
+  if(n>1)
+    names_col <- paste(rep('fa_', n),
+                       rep(name, n),
+                       seq(1,n),
+                       sep = "")
+  else
+    names_col <- paste('fa_',name,sep="")
+  colnames(scores) <- names_col
+  out <- cbind(df,scores)
+  return(out)
+}
+```
+
+```{r}
+d3 <- add_scores_to_df(d3, habits_model, 'habits')
+d3 <- add_scores_to_df(d3, climate_model, 'climate')
+d3 <- add_scores_to_df(d3, subj_model, 'subj')
+d3 <- add_scores_to_df(d3, trust_model, 'trust')
+d3 <- add_scores_to_df(d3, control_model, 'control')
+```
+
+
+### Selecting only the relevant variables now
+
+```{r}
+d4 <- d3 %>% 
+  select(
+  FF,
+  RTSB_B,
+  COMB,
+  RTSB_A,
+  P2P,
+  starts_with('fa'),
+  age_c,
+  education,
+  gender,
+  income
+)
+```
+
+
+## Analysis and models
+
+Now we are going to do the same analysis for each car sharing type company
+
+We are using the same weakly informative priors for all models. For the monotonic predictors we are using the default priors where the distance is the same between each item in the income and education scale
+```{r}
+priors<-c(set_prior("normal(0,5)", class = "b", coef = "fa_habits"),
+          set_prior("normal(0,5)", class = "b", coef = "fa_climate"),
+          set_prior("normal(0,5)", class = "b", coef = "fa_subj"),
+          set_prior("normal(0,5)", class = "b", coef = "fa_trust"),
+          set_prior("normal(0,5)", class = "b", coef = "fa_control"),
+          set_prior("normal(0,5)", class = "b", coef = "age_c"),
+          set_prior("normal(0,5)", class = "b", coef = "genderMale"))
+priors0<-c(set_prior("normal(0,5)", class = "b", coef = "age_c"),
+          set_prior("normal(0,5)", class = "b", coef = "genderMale"))
+```
+
+
+
+
+### FF
+
+```{r}
+d_ff <- d4 %>% 
+  select(FF,
+         starts_with('fa'),
+         age_c,
+         gender,
+         education,
+         income) %>% 
+  drop_na()
+
+d_ff$FF <- as.ordered(d_ff$FF)
+```
+
+Ordinal regression with monotonic predictors
+
+```{r echo=T, eval=F}
+m_ff <- brm(FF ~ fa_habits + fa_climate + fa_subj + fa_trust + fa_control + gender + mo(income) + age_c + mo(education),
+            data = d_ff,
+            prior = priors,
+            family = cumulative(),
+            cores=4
+            )
+m_ff0 <- brm(FF ~ gender + mo(income) + age_c + mo(education),
+            data = d_ff,
+            prior = priors0,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_ff0, 'models/m_ff0.RDS')
+saveRDS(m_ff, 'models/m_ff.RDS')
+```
+
+```{r eval=T, echo=F}
+m_ff <- readRDS('models/m_ff.RDS')
+m_ff0 <- readRDS('models/m_ff0.RDS')
+```
+
+Now we can get the summary of the model
+```{r}
+summary(m_ff)
+```
+
+#### Comparing the two models
+
+```{r cache=T, message=F, warning=F}
+WAIC(m_ff)
+WAIC(m_ff0)
+```
+
+#### Marginal effects 
+
+In these sequence of plots we plot the conditional effects on how changing one variable impacts the probability of choosing one of the five items (1-5) in the frequency of using a carsharing type/company
+
+```{r cache=T}
+plot(conditional_effects(m_ff, categorical = T), ask=F)
+```
+
+### RTSB_A
+
+```{r}
+d_rtsba <- d4 %>% 
+  select(RTSB_A,
+         starts_with('fa'),
+         age_c,
+         gender,
+         education,
+         income) %>% 
+  drop_na()
+
+d_rtsba$RTSB_A <- as.ordered(d_rtsba$RTSB_A)
+```
+
+Ordinal regression with monotonic predictors
+
+```{r echo=T, eval=F}
+m_rtsba <- brm(RTSB_A ~ fa_habits + fa_climate + fa_subj + fa_trust + fa_control + gender + mo(income) + age_c + mo(education),
+            data = d_rtsba,
+            prior = priors,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_rtsba, 'models/m_rtsba.RDS')
+
+m_rtsba0 <- brm(RTSB_A ~  gender + mo(income) + age_c + mo(education),
+            data = d_rtsba,
+            prior = priors0,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_rtsba0, 'models/m_rtsba0.RDS')
+```
+
+```{r eval=T, echo=F}
+m_rtsba <- readRDS('models/m_rtsba.RDS')
+m_rtsba0 <- readRDS('models/m_rtsba0.RDS')
+```
+
+Now we can get the summary of the model
+```{r}
+summary(m_rtsba)
+```
+
+#### Comparing the two models
+
+```{r cache=T, message=F, warning=F}
+WAIC(m_rtsba)
+WAIC(m_rtsba0)
+```
+
+
+#### Marginal effects 
+
+In these sequence of plots we plot the conditional effects on how changing one variable impacts the probability of choosing one of the five items (1-5) in the frequency of using a carsharing type/company
+
+```{r cache=T}
+plot(conditional_effects(m_rtsba, categorical = T), ask=F)
+```
+
+
+### RTSB_B
+
+```{r}
+d_rtsbb <- d4 %>% 
+  select(RTSB_B,
+         starts_with('fa'),
+         age_c,
+         gender,
+         education,
+         income) %>% 
+  drop_na()
+
+d_rtsbb$RTSB_B <- as.ordered(d_rtsbb$RTSB_B)
+```
+
+Ordinal regression with monotonic predictors
+
+```{r echo=T, eval=F}
+m_rtsbb <- brm(RTSB_B ~ fa_habits + fa_climate + fa_subj + fa_trust + fa_control + gender + mo(income) + age_c + mo(education),
+            data = d_rtsbb,
+            prior = priors,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_rtsbb, 'models/m_rtsbb.RDS')
+
+m_rtsbb0 <- brm(RTSB_B ~ gender + mo(income) + age_c + mo(education),
+            data = d_rtsbb,
+            prior = priors0,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_rtsbb0, 'models/m_rtsbb0.RDS')
+```
+
+```{r eval=T, echo=F}
+m_rtsbb <- readRDS('models/m_rtsbb.RDS')
+m_rtsbb0 <- readRDS('models/m_rtsbb0.RDS')
+```
+
+Now we can get the summary of the model
+```{r}
+summary(m_rtsbb)
+```
+
+#### Comparing the two models
+
+```{r cache=T, message=F, warning=F}
+WAIC(m_rtsbb)
+WAIC(m_rtsbb0)
+```
+
+
+#### Marginal effects 
+
+In these sequence of plots we plot the conditional effects on how changing one variable impacts the probability of choosing one of the five items (1-5) in the frequency of using a carsharing type/company
+
+```{r cache=T}
+plot(conditional_effects(m_rtsbb, categorical = T), ask=F)
+```
+
+### COMB
+
+```{r}
+d_comb <- d4 %>% 
+  select(COMB,
+         starts_with('fa'),
+         age_c,
+         gender,
+         education,
+         income) %>% 
+  drop_na()
+
+d_comb$COMB <- as.ordered(d_comb$COMB)
+```
+
+Ordinal regression with monotonic predictors
+
+```{r echo=T, eval=F}
+m_comb <- brm(COMB ~ fa_habits + fa_climate + fa_subj + fa_trust + fa_control + gender + mo(income) + age_c + mo(education),
+            data = d_comb,
+            prior = priors,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_comb, 'models/m_comb.RDS')
+m_comb0 <- brm(COMB ~  gender + mo(income) + age_c + mo(education),
+            data = d_comb,
+            prior = priors0,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_comb0, 'models/m_comb0.RDS')
+```
+
+```{r eval=T, echo=F}
+m_comb <- readRDS('models/m_comb.RDS')
+m_comb0 <- readRDS('models/m_comb0.RDS')
+```
+
+Now we can get the summary of the model
+```{r}
+summary(m_comb)
+```
+
+#### Comparing the two models
+
+```{r cache=T, message=F, warning=F}
+WAIC(m_comb)
+WAIC(m_comb0)
+```
+
+
+#### Marginal effects 
+
+In these sequence of plots we plot the conditional effects on how changing one variable impacts the probability of choosing one of the five items (1-5) in the frequency of using a carsharing type/company
+
+```{r cache=T}
+plot(conditional_effects(m_comb, categorical = T), ask=F)
+```
+
+### P2P
+```{r}
+d_p2p <- d4 %>% 
+  select(P2P,
+         starts_with('fa'),
+         age_c,
+         gender,
+         education,
+         income) %>% 
+  drop_na()
+
+d_p2p$P2P <- as.ordered(d_p2p$P2P)
+```
+
+Ordinal regression with monotonic predictors
+
+```{r echo=T, eval=F}
+m_p2p <- brm(P2P ~ fa_habits + fa_climate + fa_subj + fa_trust + fa_control + gender + mo(income) + age_c + mo(education),
+            data = d_p2p,
+            prior = priors,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_p2p, 'models/m_p2p.RDS')
+m_p2p0 <- brm(P2P ~  gender + mo(income) + age_c + mo(education),
+            data = d_p2p,
+            prior = priors0,
+            family = cumulative(),
+            cores=4
+            )
+saveRDS(m_p2p0, 'models/m_p2p0.RDS')
+```
+
+```{r eval=T, echo=F}
+m_p2p <- readRDS('models/m_p2p.RDS')
+m_p2p0 <- readRDS('models/m_p2p0.RDS')
+```
+
+Now we can get the summary of the model
+```{r}
+summary(m_p2p)
+```
+
+#### Comparing the two models
+
+```{r cache=T, message=F, warning=F}
+WAIC(m_p2p)
+WAIC(m_p2p0)
+```
+
+
+#### Marginal effects 
+
+In these sequence of plots we plot the conditional effects on how changing one variable impacts the probability of choosing one of the five items (1-5) in the frequency of using a carsharing type/company
+
+```{r cache=T}
+plot(conditional_effects(m_p2p, categorical = T), ask=F)
+```
+
+
+## Figures for the paper
+
+### Habits panel
+
+```{r results='hide'}
+habits_ff <- plot(conditional_effects(m_ff, effects="fa_habits",categorical = T))[[1]] + 
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Habits",
+       title = "FF",
+       fill = "Response",
+       colour = "Response")+
+  theme(axis.title.x=element_blank())
+
+habits_rtsba <- plot(conditional_effects(m_rtsba, effects="fa_habits",categorical = T))[[1]] +
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Habits",
+       title = "RTSB_A",
+       fill = "Response",
+       colour = "Response")+ 
+  theme(axis.title.x=element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank())
+
+habits_rtsbb <- plot(conditional_effects(m_rtsbb, effects="fa_habits",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Habits",
+       title = "RTSB_B",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.y=element_blank(),
+        axis.text.y = element_blank())
+
+habits_comb <- plot(conditional_effects(m_comb, effects="fa_habits",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Habits",
+       title = "COMB",
+       fill = "Response",
+       colour = "Response")+ 
+    theme(axis.title.x=element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y=element_blank())
+
+habits_p2p <- plot(conditional_effects(m_p2p, effects="fa_habits",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Habits",
+       title = "P2P",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.x=element_blank(), 
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank())
+```
+
+### Climate panel
+```{r results='hide'}
+climate_ff <- plot(conditional_effects(m_ff, effects="fa_climate",categorical = T))[[1]] + 
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Climate",
+       fill = "Response",
+       colour = "Response")+
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),)
+
+climate_rtsba <- plot(conditional_effects(m_rtsba, effects="fa_climate",categorical = T))[[1]] +
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Climate",
+       fill = "Response",
+       colour = "Response")+ 
+  theme(axis.title.x=element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_blank(),
+        axis.title.y=element_blank())
+
+climate_rtsbb <- plot(conditional_effects(m_rtsbb, effects="fa_climate",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Climate",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.y=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank())
+
+climate_comb <- plot(conditional_effects(m_comb, effects="fa_climate",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Climate",
+       fill = "Response",
+       colour = "Response")+ 
+    theme(axis.title.x=element_blank(),
+          plot.title = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y=element_blank())
+
+climate_p2p <- plot(conditional_effects(m_p2p, effects="fa_climate",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Climate",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank())
+```
+
+### Subjective norm panel
+```{r results='hide'}
+subjective_ff <- plot(conditional_effects(m_ff, effects="fa_subj",categorical = T))[[1]] + 
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Subjective norm",
+       fill = "Response",
+       colour = "Response")+
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank())
+
+subjective_rtsba <- plot(conditional_effects(m_rtsba, effects="fa_subj",categorical = T))[[1]] +
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Subjective norm",
+       fill = "Response",
+       colour = "Response")+ 
+  theme(axis.title.x=element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_blank(),
+        axis.title.y=element_blank())
+
+subjective_rtsbb <- plot(conditional_effects(m_rtsbb, effects="fa_subj",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Subjective norm",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.y=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank())
+
+subjective_comb <- plot(conditional_effects(m_comb, effects="fa_subj",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Subjective norm",
+       fill = "Response",
+       colour = "Response")+ 
+    theme(axis.title.x=element_blank(),
+          plot.title = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y=element_blank())
+
+subjective_p2p <- plot(conditional_effects(m_p2p, effects="fa_subj",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Subjective norm",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank())
+```
+
+### Trust panel
+```{r results='hide'}
+trust_ff <- plot(conditional_effects(m_ff, effects="fa_trust",categorical = T))[[1]] + 
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Trust",
+       fill = "Response",
+       colour = "Response")+
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),)
+
+trust_rtsba <- plot(conditional_effects(m_rtsba, effects="fa_trust",categorical = T))[[1]] +
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Trust",
+       fill = "Response",
+       colour = "Response")+ 
+  theme(axis.title.x=element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_blank(),
+        axis.title.y=element_blank())
+
+trust_rtsbb <- plot(conditional_effects(m_rtsbb, effects="fa_trust",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Trust",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.y=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank())
+
+trust_comb <- plot(conditional_effects(m_comb, effects="fa_trust",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Trust",
+       fill = "Response",
+       colour = "Response")+ 
+    theme(axis.title.x=element_blank(),
+          plot.title = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y=element_blank())
+
+trust_p2p <- plot(conditional_effects(m_p2p, effects="fa_trust",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Trust",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank())
+```
+
+### Control panel
+```{r results='hide'}
+control_ff <- plot(conditional_effects(m_ff, effects="fa_control",categorical = T))[[1]] + 
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Control",
+       fill = "Response",
+       colour = "Response")+
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),)
+
+control_rtsba <- plot(conditional_effects(m_rtsba, effects="fa_control",categorical = T))[[1]] +
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Control",
+       fill = "Response",
+       colour = "Response")+ 
+  theme(axis.title.x=element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_blank(),
+        axis.title.y=element_blank())
+
+control_rtsbb <- plot(conditional_effects(m_rtsbb, effects="fa_control",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Control",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.y=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank())
+
+control_comb <- plot(conditional_effects(m_comb, effects="fa_control",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Control",
+       fill = "Response",
+       colour = "Response")+ 
+    theme(axis.title.x=element_blank(),
+          plot.title = element_blank(),
+          axis.text.y = element_blank(),
+          axis.title.y=element_blank())
+
+control_p2p <- plot(conditional_effects(m_p2p, effects="fa_control",categorical = T))[[1]]+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Control",
+       fill = "Response",
+       colour = "Response")  + 
+  theme(axis.title.x=element_blank(),
+        plot.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.y=element_blank())
+```
+
+### Merging panels
+
+```{r}
+habits <- (habits_ff + habits_rtsba + habits_rtsbb + habits_comb + habits_p2p ) + plot_layout(nrow=1)
+  
+climate <- (climate_ff + climate_rtsba + climate_rtsbb +climate_comb +climate_p2p)+ plot_layout(nrow=1) 
+
+subjective <- (subjective_ff + subjective_rtsba + subjective_rtsbb +subjective_comb +subjective_p2p)+ plot_layout(nrow=1) 
+
+trust <- (trust_ff + trust_rtsba + trust_rtsbb +trust_comb +trust_p2p)+ plot_layout(nrow=1) 
+
+
+control <- (control_ff + control_rtsba + control_rtsbb + control_comb + control_p2p ) +
+  plot_layout(nrow=1) 
+
+panel <- (habits / climate/ subjective / trust /control) + plot_layout(guides = "collect") & theme(legend.position = 'bottom')
+```
+
+
+```{r}
+panel
+```
+

@@ -1,0 +1,323 @@
+# Motivators for using a carsharing company
+
+In this research question, we are assessing how each motivator is selected as important by the users. We control for age, gender and income as predictors and for the choice of the first operator as random effects
+
+```{r}
+library(psych)
+library(haven)
+library(tidyverse)
+library(labelled)
+library(brms)
+library(patchwork)
+set.seed(3103)
+```
+
+## Importing and preparing the data
+
+
+```{r}
+d <- haven::read_sav("data/original/Users Germany.sav")
+```
+
+Selecting only the variables of interest
+
+```{r}
+d1 <- d %>% 
+  select(
+         # DV 
+         first_operator=anbiet1,
+         # IV
+         accessibility=v39_10,
+         expenses=v39_20,
+         not_owning_a_car=v39_50,
+         sustainability=v39_30,
+         maintenance=v39_50,
+         parking=v39_60,
+         convenience = v39_70,
+         #other control variables,
+         age = v29,
+         gender = v28,
+         income = v32,
+         education = v30)
+```
+
+Basic transformations for correct fitting
+
+Let's convert everything to numeric to get rid of the labels and process some of the other variables
+```{r}
+d2 <- as.data.frame(sapply(d1, as.numeric))
+#gender
+d2$gender <- na_if(d2$gender, 3)#there are only 3 cases of other
+d2$gender<-as.character(d2$gender)
+d2$gender <- dplyr::recode(d2$gender, 
+                 '1'='Male',
+                 '2'='Female',
+                 '3'='Other')
+d2$gender <- as.factor(d2$gender)
+#age
+d2$age <- 2019 - d2$age
+d2$age_c <- scale(d2$age)
+
+#income
+d2$income <- na_if(d2$income, 9)
+d2$income <- as.character(d2$income)
+income_order <-c('less_1000',
+                 '1000_to_2000',
+                 '2000_to_3000',
+                 '3000_to_4000',
+                 '4000_to_5000',
+                 'greater_5000')
+d2$income <- dplyr::recode(d2$income, 
+                 '1'='less_1000',
+                 '2'='1000_to_2000',
+                 '3'='2000_to_3000',
+                 '4'='3000_to_4000',
+                 '5'='4000_to_5000',
+                 '6'='greater_5000')
+d2$income <- factor(d2$income, levels = income_order, ordered = T)
+
+#first operator
+d2$first_operator <- na_if(d2$first_operator, 9)#no information
+d2$first_operator <- na_if(d2$first_operator, 10) #drivenow
+d2$first_operator <- na_if(d2$first_operator, 11) #flinkster
+d2$first_operator <- na_if(d2$first_operator, 99) #other
+d2$first_operator <- as.character(d2$first_operator)
+d2$first_operator <- dplyr::recode(d2$first_operator, 
+                 '1'='COMB', #book n drive     
+                 '2'='RTSB_B', #stadmobil,
+                 '3'='RTSB_A',#cambio
+                 '4'='RTSB_B', #stadmobil
+                 '5'='FF', #car2go
+                 '6'='P2P' #drivy
+                 )
+d2$first_operator <- factor(d2$first_operator, ordered = FALSE)
+
+#education
+d2$education <- na_if(d2$education, 9)
+d2$education <- as.character(d2$education)
+education_order <-c('SecondarySchool_1',
+                 'SecondarySchool_2',
+                 'Highschool',
+                 'University')
+d2$education <- dplyr::recode(d2$education, 
+                 '1'='SecondarySchool_1',
+                 '2'='SecondarySchool_2',
+                 '3'='Highschool',
+                 '4'='University')
+d2$education <- factor(d2$education, levels = education_order, ordered = T)
+
+d2$first_operator <- as.factor(d2$first_operator)
+
+d2$accessibility <- as.factor(d2$accessibility)
+d2$expenses<- as.factor(d2$expenses)
+d2$not_owning_a_car<- as.factor(d2$not_owning_a_car)
+d2$sustainability<- as.factor(d2$sustainability)
+d2$maintenance<- as.factor(d2$maintenance)
+d2$parking<- as.factor(d2$parking)
+d2$convenience<- as.factor(d2$convenience)
+
+```
+
+```{r}
+d3 <- drop_na(d2)
+```
+
+
+## Model
+
+The model described here is a categorical model (multinomial model).
+
+### Priors for the models
+
+Now we are going to do the same analysis for each car sharing type company
+
+We are using the same weakly informative priors for all models.
+For the monotonic predictors we are using the default priors where the distance is the same between each item in the income and education scale
+We are also using the default priors for the random effects
+```{r}
+priors<-c(set_prior("normal(0,5)", class = "b"))
+```
+
+
+```{r eval=F}
+m_first_operator <- brm(first_operator ~ 
+                accessibility + expenses +not_owning_a_car +sustainability+ maintenance + parking + convenience + 
+                gender + mo(income) + age_c + mo(education),
+            data = d3,
+            prior = priors,
+            family = categorical(link = "logit"),
+            cores=4
+            )
+saveRDS(m_first_operator, 'models/m_first_operator.RDS')
+
+m_first_operator0 <- brm(first_operator ~  gender + mo(income) + age_c + mo(education),
+            data = d3,
+            prior = priors,
+            family = categorical(link = "logit"),
+            cores=4
+            )
+saveRDS(m_first_operator0, 'models/m_first_operator0.RDS')
+```
+
+```{r eval=T, echo=F}
+m_first_operator <- readRDS('models/m_first_operator.RDS')
+m_first_operator0 <- readRDS('models/m_first_operator0.RDS')
+```
+
+
+### Comparing the two models
+
+```{r}
+WAIC(m_first_operator)
+WAIC(m_first_operator0)
+```
+
+### Summary 
+
+```{r}
+summary(m_first_operator)
+```
+
+### Marginal effects
+
+```{r cache=T}
+plot(conditional_effects(m_first_operator, categorical = T), ask=F)
+```
+
+## Figures for the paper
+
+### Panel 1 - demographics
+
+```{r results='hide'}
+gender <- plot(conditional_effects(m_first_operator, effects = "gender", categorical = T))[[1]]
+income <- plot(conditional_effects(m_first_operator, effects = "income", categorical = T))[[1]]
+age <- plot(conditional_effects(m_first_operator, effects = "age_c", categorical = T))[[1]]
+education <- plot(conditional_effects(m_first_operator, effects = "education", categorical = T))[[1]]
+```
+
+
+Customizing the labels
+
+```{r message=F, warning=F, results='hide'}
+gender <- gender+
+  coord_cartesian(ylim = c(0,1)) +
+  labs(x="Gender",
+       fill = "Business model",
+       colour = "Business model")
+
+income <- income+
+  coord_cartesian(ylim = c(0,1)) +
+  scale_x_discrete(labels = c("< 1k", "1k to 2k", "2k to 3k", "3k to 4k", "4k to 5k", "> 5k"))+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+  labs(x="Income range (Euros)",
+       fill = "Business model",
+       colour = "Business model")
+
+education <- education+
+  coord_cartesian(ylim = c(0,1)) +
+  scale_x_discrete(labels = c("Secondary 1", "Secondary 2", "High School", "University")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+  labs(x="Education",
+       fill = "Business model",
+       colour = "Business model")
+
+age <- age+
+  coord_cartesian(ylim = c(0,1)) +
+  theme(legend.title = element_blank(),
+        legend.position = "none") +
+  labs(x="Age (normalized)",
+       fill = "Business model",
+       colour = "Business model")
+```
+
+```{r}
+p <- ((gender + age) / (income + education)) +
+  plot_layout(guides = "collect")+
+  plot_annotation(title = "Demographic variables")
+p
+```
+
+### Panel 2 - motivators
+
+```{r results='hide'}
+accessibility <- plot(conditional_effects(m_first_operator, effects = "accessibility", categorical = T))[[1]]
+
+expenses <- plot(conditional_effects(m_first_operator, effects = "expenses", categorical = T))[[1]]
+
+not_owning_a_car <- plot(conditional_effects(m_first_operator, effects = "not_owning_a_car", categorical = T))[[1]]
+
+sustainability <- plot(conditional_effects(m_first_operator, effects = "sustainability", categorical = T))[[1]]
+
+maintenance <- plot(conditional_effects(m_first_operator, effects = "maintenance", categorical = T))[[1]]
+
+parking <- plot(conditional_effects(m_first_operator, effects = "parking", categorical = T))[[1]]
+
+convenience <- plot(conditional_effects(m_first_operator, effects = "convenience", categorical = T))[[1]]
+```
+
+Customizing the labels
+
+```{r message=F, warning=F, results='hide'}
+accessibility <- accessibility +
+    scale_x_discrete(labels = c("No", "Yes"))+
+    coord_cartesian(ylim = c(0,1)) +
+    labs(x="Accesibility",
+       fill = "Business model",
+       colour = "Business model")
+
+expenses <- expenses +
+  scale_x_discrete(labels = c("No", "Yes"))+
+  coord_cartesian(ylim = c(0,1)) +
+  theme(axis.title.y=element_blank())+
+    labs(x="Expenses",
+       fill = "Business model",
+       colour = "Business model")
+
+maintenance <- maintenance +
+  scale_x_discrete(labels = c("No", "Yes"))+
+  coord_cartesian(ylim = c(0,1)) +
+  theme(axis.title.y=element_blank())+
+    labs(x="Maintanence",
+       fill = "Business model",
+       colour = "Business model")
+
+not_owning_a_car <- not_owning_a_car +
+  scale_x_discrete(labels = c("No", "Yes"))+
+  coord_cartesian(ylim = c(0,1)) +
+  theme(axis.title.y=element_blank())+
+    labs(x="Not owning a car",
+       fill = "Business model",
+       colour = "Business model")
+
+sustainability <- sustainability +
+  scale_x_discrete(labels = c("No", "Yes"))+
+  theme(axis.title.y=element_blank())+
+  coord_cartesian(ylim = c(0,1)) +
+    labs(x="Sustainability",
+       fill = "Business model",
+       colour = "Business model")
+
+parking <- parking +
+  scale_x_discrete(labels = c("No", "Yes"))+
+  coord_cartesian(ylim = c(0,1)) +
+    labs(x="Parking",
+       fill = "Business model",
+       colour = "Business model")
+
+convenience <- convenience +
+  scale_x_discrete(labels = c("No", "Yes"))+
+  coord_cartesian(ylim = c(0,1)) +
+    labs(x="Convenience",
+       fill = "Business model",
+       colour = "Business model")
+
+```
+
+
+```{r}
+p <- ((accessibility + sustainability) / (convenience + not_owning_a_car) / (parking + expenses + maintenance)) +   plot_layout(guides = "collect")+
+  plot_annotation(title = "Importance of motivators") & theme(legend.position = 'bottom')
+
+p
+```
+

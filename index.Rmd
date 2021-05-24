@@ -1,0 +1,42 @@
+--- 
+title: 'Online appendix for the paper: "Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use"'
+author: "Érika Martins Silva Ramos, David Issa Mattos and Cecilia Jakobsson Bergstad"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+output:
+  bookdown::gitbook: default
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: 'This is the online appendix for the paper: "Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use"'
+always_allow_html: true
+---
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+knitr::opts_chunk$set(cache=TRUE)
+
+library(bpcs)
+library(tidyverse)
+library(knitr)
+```
+
+# Foreword
+
+This is the online appendix for the paper *"Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use"*. It contains a commented and reproducible code for all the analysis, tables and plots presented in the paper.
+
+## Session info
+
+This appendix is compiled automatically and the following session information was used to generate this appendix:
+
+```{r}
+sessionInfo()
+```
+
+
+
+

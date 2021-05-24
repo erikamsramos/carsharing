@@ -1,0 +1,424 @@
+# Ranking carsharing based on the type of the trip
+
+```{r}
+library(haven)
+library(tidyverse)
+library(labelled)
+library(bpcs)
+library(knitr)
+set.seed(3103)
+```
+
+
+## Importing the data
+
+```{r}
+d <- haven::read_sav("data/original/Users Germany.sav")
+```
+
+## Helper functions
+
+Here we define some initial functions to help make the paired comparison. These function basically take 1 row and create a dataset with all 10 possible paired comparisons. Then it merges each of these new datasets together.
+
+```{r}
+# expand 1 row
+process_row <- function(df, out, company0, company1, row){
+  diff01 <- df[[row,company0]] - df[[row,company1]]
+  
+  if(!is.na(diff01)){
+      res<-NULL
+      if(diff01==0)
+        res <- rbinom(1,1,0.5)#if tie it is randomly solved
+      else
+        res <- ifelse(diff01 > 0 , 0, 1)
+      out <- add_row(out,company0=company0,company1=company1, win=res, user=row)
+  }
+
+    return(out)
+}
+
+convert2pairedcomp <- function(df){
+  out<-tribble(~company0, ~company1, ~win, ~user)
+  i<-1
+  for(i in seq_along(1:nrow(df))){
+    # print(i)
+    # All 10 combinations
+    out <- process_row(df,out, 'COMB','FF',i)
+    out <- process_row(df,out, 'COMB','RTSB_B',i)
+    out <- process_row(df,out, 'COMB','P2P',i)
+    out <- process_row(df,out, 'COMB','RTSB_A',i)
+  
+    out <- process_row(df,out, 'FF','RTSB_B',i)
+    out <- process_row(df,out, 'FF','P2P',i)
+    out <- process_row(df,out, 'FF','RTSB_A',i)
+  
+    out <- process_row(df,out, 'RTSB_B','P2P',i)
+    out <- process_row(df,out, 'RTSB_B','RTSB_A',i)
+  
+    out <- process_row(df,out, 'P2P','RTSB_A',i)
+  }
+  return(out)
+}
+
+```
+
+## Number of people registered in at least 2 companies
+
+Here we just calculate how many people are registered in at least 2-5 companies (among all users)
+
+```{r}
+d_registered_in_2<- d %>% 
+  select(anbiet1, anbiet2, anbiet3, anbiet4, anbiet5, anbiet6) %>% 
+  filter(!is.na(anbiet1)&!is.na(anbiet2))
+
+
+cat('There are:', nrow(d_registered_in_2), ' registered in at least 2 companies\n')
+
+d_registered_in_3 <- d %>% 
+  select(anbiet1, anbiet2, anbiet3, anbiet4, anbiet5, anbiet6) %>% 
+  filter(!is.na(anbiet1)&!is.na(anbiet2)&!is.na(anbiet3))
+
+
+cat('There are:', nrow(d_registered_in_3), ' registered in at least 3 companies\n')
+
+d_registered_in_4 <- d %>% 
+  select(anbiet1, anbiet2, anbiet3, anbiet4, anbiet5, anbiet6) %>% 
+  filter(!is.na(anbiet1)&!is.na(anbiet2)&!is.na(anbiet3)&!is.na(anbiet4))
+
+cat('There are:', nrow(d_registered_in_4), ' registered in at least 4 companies\n')
+
+d_registered_in_5 <- d %>% 
+  select(anbiet1, anbiet2, anbiet3, anbiet4, anbiet5, anbiet6) %>% 
+  filter(!is.na(anbiet1)&!is.na(anbiet2)&!is.na(anbiet3)&!is.na(anbiet4)&!is.na(anbiet5))
+
+cat('There are:', nrow(d_registered_in_5), ' registered in at least 5 companies\n')
+
+```
+
+
+
+## Work trips
+
+```{r}
+d_work <- d %>% 
+  select(v22bnd_1,
+         v22c2g_1,
+         v22stamo,
+         v22driv,
+         v22cam_1) %>% 
+  rename('COMB'='v22bnd_1',
+        'FF' ='v22c2g_1',
+        'RTSB_B' = 'v22stamo',
+        'P2P' = 'v22driv',
+        'RTSB_A' = 'v22cam_1') %>% 
+  mutate(COMB = as.numeric(COMB),
+         FF = as.numeric(FF),
+         RTSB_B = as.numeric(RTSB_B),
+         P2P = as.numeric(P2P),
+         RTSB_A = as.numeric(RTSB_A))
+```
+
+Now lets convert this to paired comparison
+```{r}
+d_work_pc <- convert2pairedcomp(d_work)
+cat(length(unique(d_work_pc$user)), ' evaluated at least two companies')
+```
+
+```{r eval=F, cache=T, message=F}
+m_work <- bpc(d_work_pc,
+             player0 = 'company0', 
+             player1='company1', 
+             result_column = 'win', 
+             model_type = 'bt')
+saveRDS(m_work,file = 'models/m_work.RDS')
+```
+
+```{r echo=F, eval=T}
+m_work <- readRDS('models/m_work.RDS')
+```
+
+
+```{r}
+plot(m_work)
+```
+
+```{r}
+summary(m_work)
+```
+
+
+## Going out for dinner trips
+```{r}
+d_dinner <- d %>% 
+  select(v22bnd_2,
+         v22c2g_2,
+         v158_a,
+         v164_a,
+         v22cam_2) %>% 
+  rename('COMB'='v22bnd_2',
+        'FF' ='v22c2g_2',
+        'RTSB_B' = 'v158_a',
+        'P2P' = 'v164_a',
+        'RTSB_A' = 'v22cam_2') %>% 
+  mutate(COMB = as.numeric(COMB),
+         FF = as.numeric(FF),
+         RTSB_B = as.numeric(RTSB_B),
+         P2P = as.numeric(P2P),
+         RTSB_A = as.numeric(RTSB_A))
+```
+
+Now lets convert this to paired comparison
+```{r}
+d_dinner_pc <- convert2pairedcomp(d_dinner)
+```
+
+```{r cache=T, message=F, eval=F}
+m_dinner <- bpc(d_dinner_pc,
+             player0 = 'company0', 
+             player1='company1', 
+             result_column = 'win', 
+             model_type = 'bt')
+saveRDS(m_dinner,file = 'models/m_dinner.RDS')
+```
+
+```{r echo=F, eval=T}
+m_dinner <- readRDS('models/m_dinner.RDS')
+```
+
+```{r}
+plot(m_dinner)
+```
+
+```{r}
+summary(m_dinner)
+```
+
+
+## Daily-shopping trips
+
+```{r}
+d_shopdaily <- d %>% 
+  select(v22bnd_3,
+         v22c2g_3,
+         v159_a,
+         v165_a,
+         v22cam_3) %>% 
+  rename('COMB'='v22bnd_3',
+        'FF' ='v22c2g_3',
+        'RTSB_B' = 'v159_a',
+        'P2P' = 'v165_a',
+        'RTSB_A' = 'v22cam_3') %>% 
+  mutate(COMB = as.numeric(COMB),
+         FF = as.numeric(FF),
+         RTSB_B = as.numeric(RTSB_B),
+         P2P = as.numeric(P2P),
+         RTSB_A = as.numeric(RTSB_A))
+```
+
+Now lets convert this to paired comparison
+```{r}
+d_shopdaily_pc <- convert2pairedcomp(d_shopdaily)
+cat(length(unique(d_shopdaily_pc$user)), ' evaluated at least two companies')
+```
+
+```{r cache=T, message=F, eval=F}
+m_shopdaily <- bpc(d_shopdaily_pc,
+             player0 = 'company0', 
+             player1='company1', 
+             result_column = 'win', 
+             model_type = 'bt')
+saveRDS(m_shopdaily,file = 'models/m_shopdaily.RDS')
+```
+
+```{r echo=F, eval=T}
+m_shopdaily <- readRDS('models/m_shopdaily.RDS')
+```
+
+
+```{r}
+plot(m_shopdaily)
+```
+
+```{r}
+summary(m_shopdaily)
+```
+
+
+## Bulk shopping trips
+
+```{r}
+d_shopbulk <- d %>% 
+  select(v22bnd_4,
+         v22c2g_4,
+         v160_a,
+         v166_a,
+         v22cam_4) %>% 
+  rename('COMB'='v22bnd_4',
+        'FF' ='v22c2g_4',
+        'RTSB_B' = 'v160_a',
+        'P2P' = 'v166_a',
+        'RTSB_A' = 'v22cam_4') %>% 
+  mutate(COMB = as.numeric(COMB),
+         FF = as.numeric(FF),
+         RTSB_B = as.numeric(RTSB_B),
+         P2P = as.numeric(P2P),
+         RTSB_A = as.numeric(RTSB_A))
+```
+
+Now lets convert this to paired comparison
+```{r}
+d_shopbulk_pc <- convert2pairedcomp(d_shopbulk)
+cat(length(unique(d_shopbulk_pc$user)), ' evaluated at least two companies')
+```
+
+```{r cache=T, message=F, eval=F}
+m_shopbulk <- bpc(d_shopbulk_pc,
+             player0 = 'company0', 
+             player1='company1', 
+             result_column = 'win', 
+             model_type = 'bt')
+saveRDS(m_shopbulk,file = 'models/m_shopbulk.RDS')
+```
+
+```{r echo=F, eval=T}
+m_shopbulk <- readRDS('models/m_shopbulk.RDS')
+```
+
+
+```{r}
+plot(m_shopbulk)
+```
+
+```{r}
+summary(m_shopbulk)
+```
+
+
+## Recreational activity trips
+
+```{r}
+d_recreational <- d %>% 
+  select(v22bnd_5,
+         v22c2g_5,
+         v161_a,
+         v167_a,
+         v22cam_5) %>% 
+  rename('COMB'='v22bnd_5',
+        'FF' ='v22c2g_5',
+        'RTSB_B' = 'v161_a',
+        'P2P' = 'v167_a',
+        'RTSB_A' = 'v22cam_5') %>% 
+  mutate(COMB = as.numeric(COMB),
+         FF = as.numeric(FF),
+         RTSB_B = as.numeric(RTSB_B),
+         P2P = as.numeric(P2P),
+         RTSB_A = as.numeric(RTSB_A))
+```
+
+Now lets convert this to paired comparison
+```{r}
+d_recreational_pc <- convert2pairedcomp(d_recreational)
+cat(length(unique(d_recreational_pc$user)), ' evaluated at least two companies')
+```
+
+```{r cache=T, message=F, eval=F}
+m_recreational <- bpc(d_recreational_pc,
+             player0 = 'company0', 
+             player1='company1', 
+             result_column = 'win', 
+             model_type = 'bt')
+saveRDS(m_recreational,file = 'models/m_recreational.RDS')
+```
+
+```{r echo=F, eval=T}
+m_recreational <- readRDS('models/m_recreational.RDS')
+```
+
+
+```{r}
+plot(m_recreational)
+```
+
+```{r}
+summary(m_recreational)
+```
+
+## Holiday trips
+
+```{r}
+d_holidays <- d %>% 
+  select(v22bnd_6,
+         v22c2g_6,
+         v162_a,
+         v168_a,
+         v22cam_6) %>% 
+  rename('COMB'='v22bnd_6',
+        'FF' ='v22c2g_6',
+        'RTSB_B' = 'v162_a',
+        'P2P' = 'v168_a',
+        'RTSB_A' = 'v22cam_6') %>% 
+  mutate(COMB = as.numeric(COMB),
+         FF = as.numeric(FF),
+         RTSB_B = as.numeric(RTSB_B),
+         P2P = as.numeric(P2P),
+         RTSB_A = as.numeric(RTSB_A))
+```
+
+Now lets convert this to paired comparison
+```{r}
+d_holidays_pc <- convert2pairedcomp(d_holidays)
+cat(length(unique(d_holidays_pc$user)), ' evaluated at least two companies')
+```
+
+```{r cache=T, message=F, eval=F}
+m_holidays <- bpc(d_holidays_pc,
+             player0 = 'company0', 
+             player1='company1', 
+             result_column = 'win', 
+             model_type = 'bt')
+saveRDS(m_holidays,file = 'models/m_holidays.RDS')
+```
+
+```{r echo=F, eval=T}
+m_holidays <- readRDS('models/m_holidays.RDS')
+```
+
+```{r}
+plot(m_holidays)
+```
+
+```{r}
+summary(m_holidays)
+```
+
+## Creating tables and figures for the article
+
+Table of ranks
+
+```{r cache=T}
+rank_table <- rbind( get_rank_of_players_df(m_work),
+                     get_rank_of_players_df(m_dinner),
+                     get_rank_of_players_df(m_shopdaily),
+                     get_rank_of_players_df(m_shopbulk),
+                     get_rank_of_players_df(m_recreational),
+                     get_rank_of_players_df(m_holidays))
+colnames(rank_table) <- c('Carsharing', 'Median', 'Mean', 'sd')
+
+rank_table$Carsharing <- str_remove(rank_table$Carsharing, fixed('lambda['))
+rank_table$Carsharing <- str_remove(rank_table$Carsharing, fixed(']'))
+
+rank_table %>% kable(caption="Rank of the types of carsharing", 
+                     booktabs=T, 
+                     digits =2, 
+                     format = 'html',
+                     label='ranking-table') %>% 
+  kableExtra::kable_styling() %>%
+  kableExtra::pack_rows("Work trips", 1, 5) %>%
+  kableExtra::pack_rows("Dinner trips", 6, 10) %>%
+  kableExtra::pack_rows("Daily shopping trips", 11, 15) %>%
+  kableExtra::pack_rows("Bulk shopping trips",  16, 20) %>%
+  kableExtra::pack_rows("Recreational trips", 21, 25) %>%
+  kableExtra::pack_rows("Holiday trips", 26, 30)
+  
+```
+
