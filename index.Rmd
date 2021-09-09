@@ -27,7 +27,7 @@ library(knitr)
 
 # Foreword
 
-This is the online appendix for the paper *"Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis"*. It contains a commented and reproducible code for all the analysis, tables and plots presented in the paper.
+This is the online appendix for the paper *"Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis"*. It contains a commented and reproducible code for all the analysis, tables and plots presented in the paper. The dataset is available in: http://doi.org/10.17632/wbf79hgn5c.1
 
 ## Session info
 
