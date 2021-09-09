@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Descriptive statistics | Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”</title>
-  <meta name="description" content="This is the online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <title>Chapter 2 Descriptive statistics | Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”</title>
+  <meta name="description" content="This is the online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Descriptive statistics | Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”" />
+  <meta property="og:title" content="Chapter 2 Descriptive statistics | Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”" />
+  <meta property="og:description" content="This is the online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Descriptive statistics | Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”" />
+  <meta name="twitter:title" content="Chapter 2 Descriptive statistics | Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”" />
   
-  <meta name="twitter:description" content="This is the online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”" />
+  <meta name="twitter:description" content="This is the online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”" />
   
 
 <meta name="author" content="Érika Martins Silva Ramos, David Issa Mattos and Cecilia Jakobsson Bergstad" />
 
 
-<meta name="date" content="2021-05-24" />
+<meta name="date" content="2021-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="motivators-for-using-a-carsharing-company.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,23 +50,26 @@
 
 
 
-
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +89,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -119,6 +122,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 </head>
 
 <body>
@@ -131,34 +135,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Foreword</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Foreword</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i><b>1.1</b> Session info</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive statistics</a>
-<ul>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#importing-and-preparing-the-data"><i class="fa fa-check"></i><b>2.1</b> Importing and preparing the data</a></li>
 <li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#descriptive-statistics-table"><i class="fa fa-check"></i><b>2.2</b> Descriptive statistics table</a></li>
 <li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tables-for-the-paper"><i class="fa fa-check"></i><b>2.3</b> Tables for the paper</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html"><i class="fa fa-check"></i><b>3</b> Motivators for using a carsharing company</a>
-<ul>
+<li class="chapter" data-level="3" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html"><i class="fa fa-check"></i><b>3</b> Motivators for using a carsharing company</a><ul>
 <li class="chapter" data-level="3.1" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#importing-and-preparing-the-data-1"><i class="fa fa-check"></i><b>3.1</b> Importing and preparing the data</a></li>
-<li class="chapter" data-level="3.2" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#model"><i class="fa fa-check"></i><b>3.2</b> Model</a>
-<ul>
+<li class="chapter" data-level="3.2" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#model"><i class="fa fa-check"></i><b>3.2</b> Model</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#priors-for-the-models"><i class="fa fa-check"></i><b>3.2.1</b> Priors for the models</a></li>
 <li class="chapter" data-level="3.2.2" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#comparing-the-two-models"><i class="fa fa-check"></i><b>3.2.2</b> Comparing the two models</a></li>
 <li class="chapter" data-level="3.2.3" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#summary"><i class="fa fa-check"></i><b>3.2.3</b> Summary</a></li>
 <li class="chapter" data-level="3.2.4" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#marginal-effects"><i class="fa fa-check"></i><b>3.2.4</b> Marginal effects</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#figures-for-the-paper"><i class="fa fa-check"></i><b>3.3</b> Figures for the paper</a>
-<ul>
+<li class="chapter" data-level="3.3" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#figures-for-the-paper"><i class="fa fa-check"></i><b>3.3</b> Figures for the paper</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#panel-1---demographics"><i class="fa fa-check"></i><b>3.3.1</b> Panel 1 - demographics</a></li>
 <li class="chapter" data-level="3.3.2" data-path="motivators-for-using-a-carsharing-company.html"><a href="motivators-for-using-a-carsharing-company.html#panel-2---motivators"><i class="fa fa-check"></i><b>3.3.2</b> Panel 2 - motivators</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html"><i class="fa fa-check"></i><b>4</b> Ranking carsharing based on the type of the trip</a>
-<ul>
+<li class="chapter" data-level="4" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html"><i class="fa fa-check"></i><b>4</b> Ranking carsharing based on the type of the trip</a><ul>
 <li class="chapter" data-level="4.1" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html#importing-the-data"><i class="fa fa-check"></i><b>4.1</b> Importing the data</a></li>
 <li class="chapter" data-level="4.2" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html#helper-functions"><i class="fa fa-check"></i><b>4.2</b> Helper functions</a></li>
 <li class="chapter" data-level="4.3" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html#number-of-people-registered-in-at-least-2-companies"><i class="fa fa-check"></i><b>4.3</b> Number of people registered in at least 2 companies</a></li>
@@ -170,11 +168,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html#holiday-trips"><i class="fa fa-check"></i><b>4.9</b> Holiday trips</a></li>
 <li class="chapter" data-level="4.10" data-path="ranking-carsharing-based-on-the-type-of-the-trip.html"><a href="ranking-carsharing-based-on-the-type-of-the-trip.html#creating-tables-and-figures-for-the-article"><i class="fa fa-check"></i><b>4.10</b> Creating tables and figures for the article</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html"><i class="fa fa-check"></i><b>5</b> Psychological predictors of carsharing per business model</a>
-<ul>
+<li class="chapter" data-level="5" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html"><i class="fa fa-check"></i><b>5</b> Psychological predictors of carsharing per business model</a><ul>
 <li class="chapter" data-level="5.1" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#importing-the-data-1"><i class="fa fa-check"></i><b>5.1</b> Importing the data</a></li>
-<li class="chapter" data-level="5.2" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#factor-analysis"><i class="fa fa-check"></i><b>5.2</b> Factor analysis</a>
-<ul>
+<li class="chapter" data-level="5.2" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#factor-analysis"><i class="fa fa-check"></i><b>5.2</b> Factor analysis</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#habits"><i class="fa fa-check"></i><b>5.2.1</b> Habits</a></li>
 <li class="chapter" data-level="5.2.2" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#climate"><i class="fa fa-check"></i><b>5.2.2</b> Climate</a></li>
 <li class="chapter" data-level="5.2.3" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#subjective-norms"><i class="fa fa-check"></i><b>5.2.3</b> Subjective norms</a></li>
@@ -184,16 +180,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.7" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#adding-the-fa-scores-to-data-frame"><i class="fa fa-check"></i><b>5.2.7</b> Adding the FA scores to data frame</a></li>
 <li class="chapter" data-level="5.2.8" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#selecting-only-the-relevant-variables-now"><i class="fa fa-check"></i><b>5.2.8</b> Selecting only the relevant variables now</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#analysis-and-models"><i class="fa fa-check"></i><b>5.3</b> Analysis and models</a>
-<ul>
+<li class="chapter" data-level="5.3" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#analysis-and-models"><i class="fa fa-check"></i><b>5.3</b> Analysis and models</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#ff"><i class="fa fa-check"></i><b>5.3.1</b> FF</a></li>
 <li class="chapter" data-level="5.3.2" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#rtsb_a"><i class="fa fa-check"></i><b>5.3.2</b> RTSB_A</a></li>
 <li class="chapter" data-level="5.3.3" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#rtsb_b"><i class="fa fa-check"></i><b>5.3.3</b> RTSB_B</a></li>
 <li class="chapter" data-level="5.3.4" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#comb"><i class="fa fa-check"></i><b>5.3.4</b> COMB</a></li>
 <li class="chapter" data-level="5.3.5" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#p2p"><i class="fa fa-check"></i><b>5.3.5</b> P2P</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#figures-for-the-paper-1"><i class="fa fa-check"></i><b>5.4</b> Figures for the paper</a>
-<ul>
+<li class="chapter" data-level="5.4" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#figures-for-the-paper-1"><i class="fa fa-check"></i><b>5.4</b> Figures for the paper</a><ul>
 <li class="chapter" data-level="5.4.1" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#habits-panel"><i class="fa fa-check"></i><b>5.4.1</b> Habits panel</a></li>
 <li class="chapter" data-level="5.4.2" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#climate-panel"><i class="fa fa-check"></i><b>5.4.2</b> Climate panel</a></li>
 <li class="chapter" data-level="5.4.3" data-path="psychological-predictors-of-carsharing-per-business-model.html"><a href="psychological-predictors-of-carsharing-per-business-model.html#subjective-norm-panel"><i class="fa fa-check"></i><b>5.4.3</b> Subjective norm panel</a></li>
@@ -211,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use”</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online appendix for the paper: “Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis”</a>
           </h1>
         </div>
 
@@ -219,192 +213,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="descriptive-statistics" class="section level1" number="2">
+<div id="descriptive-statistics" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Descriptive statistics</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb3-2"><a href="descriptive-statistics.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb3-3"><a href="descriptive-statistics.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-4"><a href="descriptive-statistics.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
-<span id="cb3-5"><a href="descriptive-statistics.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
-<span id="cb3-6"><a href="descriptive-statistics.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
-<span id="cb3-7"><a href="descriptive-statistics.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table1)</span>
-<span id="cb3-8"><a href="descriptive-statistics.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3103</span>)</span></code></pre></div>
-<div id="importing-and-preparing-the-data" class="section level2" number="2.1">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1"></a><span class="kw">library</span>(psych)</span>
+<span id="cb3-2"><a href="descriptive-statistics.html#cb3-2"></a><span class="kw">library</span>(haven)</span>
+<span id="cb3-3"><a href="descriptive-statistics.html#cb3-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb3-4"><a href="descriptive-statistics.html#cb3-4"></a><span class="kw">library</span>(labelled)</span>
+<span id="cb3-5"><a href="descriptive-statistics.html#cb3-5"></a><span class="kw">library</span>(brms)</span>
+<span id="cb3-6"><a href="descriptive-statistics.html#cb3-6"></a><span class="kw">library</span>(Hmisc)</span>
+<span id="cb3-7"><a href="descriptive-statistics.html#cb3-7"></a><span class="kw">library</span>(table1)</span>
+<span id="cb3-8"><a href="descriptive-statistics.html#cb3-8"></a><span class="kw">set.seed</span>(<span class="dv">3103</span>)</span></code></pre></div>
+<div id="importing-and-preparing-the-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> Importing and preparing the data</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="descriptive-statistics.html#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">&quot;data/original/Users Germany.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="descriptive-statistics.html#cb4-1"></a>d &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw">read_sav</span>(<span class="st">&quot;data/original/Users Germany.sav&quot;</span>)</span></code></pre></div>
 <p>Selecting only the variables of interest</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descriptive-statistics.html#cb5-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="descriptive-statistics.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb5-3"><a href="descriptive-statistics.html#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">first_operator=</span>anbiet1,</span>
-<span id="cb5-4"><a href="descriptive-statistics.html#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> v29,</span>
-<span id="cb5-5"><a href="descriptive-statistics.html#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">gender =</span> v28,</span>
-<span id="cb5-6"><a href="descriptive-statistics.html#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">income =</span> v32,</span>
-<span id="cb5-7"><a href="descriptive-statistics.html#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">education =</span> v30,</span>
-<span id="cb5-8"><a href="descriptive-statistics.html#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">frequency_modes =</span> v08_10, <span class="co">#private car</span></span>
-<span id="cb5-9"><a href="descriptive-statistics.html#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">public_transport =</span> v05, <span class="co">#transport public ticket</span></span>
-<span id="cb5-10"><a href="descriptive-statistics.html#cb5-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">frequency_modes_before_cs =</span> v17_20, <span class="co">#private car</span></span>
-<span id="cb5-11"><a href="descriptive-statistics.html#cb5-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_cars_no_cs =</span> v18,</span>
-<span id="cb5-12"><a href="descriptive-statistics.html#cb5-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">city =</span> ort,</span>
-<span id="cb5-13"><a href="descriptive-statistics.html#cb5-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_cars =</span> v03,</span>
-<span id="cb5-14"><a href="descriptive-statistics.html#cb5-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">children =</span> v02_1,</span>
-<span id="cb5-15"><a href="descriptive-statistics.html#cb5-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">household_size =</span> v01)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descriptive-statistics.html#cb5-1"></a>d1 &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="descriptive-statistics.html#cb5-2"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb5-3"><a href="descriptive-statistics.html#cb5-3"></a>         <span class="dt">first_operator=</span>anbiet1,</span>
+<span id="cb5-4"><a href="descriptive-statistics.html#cb5-4"></a>         <span class="dt">age =</span> v29,</span>
+<span id="cb5-5"><a href="descriptive-statistics.html#cb5-5"></a>         <span class="dt">gender =</span> v28,</span>
+<span id="cb5-6"><a href="descriptive-statistics.html#cb5-6"></a>         <span class="dt">income =</span> v32,</span>
+<span id="cb5-7"><a href="descriptive-statistics.html#cb5-7"></a>         <span class="dt">education =</span> v30,</span>
+<span id="cb5-8"><a href="descriptive-statistics.html#cb5-8"></a>         <span class="dt">frequency_modes =</span> v08_<span class="dv">10</span>, <span class="co">#private car</span></span>
+<span id="cb5-9"><a href="descriptive-statistics.html#cb5-9"></a>         <span class="dt">public_transport =</span> v05, <span class="co">#transport public ticket</span></span>
+<span id="cb5-10"><a href="descriptive-statistics.html#cb5-10"></a>         <span class="dt">frequency_modes_before_cs =</span> v17_<span class="dv">20</span>, <span class="co">#private car</span></span>
+<span id="cb5-11"><a href="descriptive-statistics.html#cb5-11"></a>         <span class="dt">n_cars_no_cs =</span> v18,</span>
+<span id="cb5-12"><a href="descriptive-statistics.html#cb5-12"></a>         <span class="dt">city =</span> ort,</span>
+<span id="cb5-13"><a href="descriptive-statistics.html#cb5-13"></a>         <span class="dt">n_cars =</span> v03,</span>
+<span id="cb5-14"><a href="descriptive-statistics.html#cb5-14"></a>         <span class="dt">children =</span> v02_<span class="dv">1</span>,</span>
+<span id="cb5-15"><a href="descriptive-statistics.html#cb5-15"></a>         <span class="dt">household_size =</span> v01)</span></code></pre></div>
 <p>Basic transformations</p>
 <p>Let’s convert everything to numeric (to get rid of the labels from SPSS).</p>
 <p>Then we recode the answers so we have more descriptive labels for the table.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="descriptive-statistics.html#cb6-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">sapply</span>(d1, as.numeric))</span>
-<span id="cb6-2"><a href="descriptive-statistics.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#gender</span></span>
-<span id="cb6-3"><a href="descriptive-statistics.html#cb6-3" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>gender<span class="ot">&lt;-</span><span class="fu">as.character</span>(d2<span class="sc">$</span>gender)</span>
-<span id="cb6-4"><a href="descriptive-statistics.html#cb6-4" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>gender <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>gender, </span>
-<span id="cb6-5"><a href="descriptive-statistics.html#cb6-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;Male&#39;</span>,</span>
-<span id="cb6-6"><a href="descriptive-statistics.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;Female&#39;</span>,</span>
-<span id="cb6-7"><a href="descriptive-statistics.html#cb6-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;Other&#39;</span>)</span>
-<span id="cb6-8"><a href="descriptive-statistics.html#cb6-8" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(d2<span class="sc">$</span>gender)</span>
-<span id="cb6-9"><a href="descriptive-statistics.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#age</span></span>
-<span id="cb6-10"><a href="descriptive-statistics.html#cb6-10" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">2019</span> <span class="sc">-</span> d2<span class="sc">$</span>age</span>
-<span id="cb6-11"><a href="descriptive-statistics.html#cb6-11" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>age_c <span class="ot">&lt;-</span> <span class="fu">scale</span>(d2<span class="sc">$</span>age)</span>
-<span id="cb6-12"><a href="descriptive-statistics.html#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="descriptive-statistics.html#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#income</span></span>
-<span id="cb6-14"><a href="descriptive-statistics.html#cb6-14" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">na_if</span>(d2<span class="sc">$</span>income, <span class="dv">9</span>)</span>
-<span id="cb6-15"><a href="descriptive-statistics.html#cb6-15" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>income)</span>
-<span id="cb6-16"><a href="descriptive-statistics.html#cb6-16" aria-hidden="true" tabindex="-1"></a>income_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;&lt; 1000&#39;</span>,</span>
-<span id="cb6-17"><a href="descriptive-statistics.html#cb6-17" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1000 to 2000&#39;</span>,</span>
-<span id="cb6-18"><a href="descriptive-statistics.html#cb6-18" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2000 to 3000&#39;</span>,</span>
-<span id="cb6-19"><a href="descriptive-statistics.html#cb6-19" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3000 to 4000&#39;</span>,</span>
-<span id="cb6-20"><a href="descriptive-statistics.html#cb6-20" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4000 to 5000&#39;</span>,</span>
-<span id="cb6-21"><a href="descriptive-statistics.html#cb6-21" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;&gt; 5000&#39;</span>)</span>
-<span id="cb6-22"><a href="descriptive-statistics.html#cb6-22" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>income <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>income, </span>
-<span id="cb6-23"><a href="descriptive-statistics.html#cb6-23" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;&lt; 1000&#39;</span>,</span>
-<span id="cb6-24"><a href="descriptive-statistics.html#cb6-24" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;1000 to 2000&#39;</span>,</span>
-<span id="cb6-25"><a href="descriptive-statistics.html#cb6-25" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;2000 to 3000&#39;</span>,</span>
-<span id="cb6-26"><a href="descriptive-statistics.html#cb6-26" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;3000 to 4000&#39;</span>,</span>
-<span id="cb6-27"><a href="descriptive-statistics.html#cb6-27" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;5&#39;</span><span class="ot">=</span><span class="st">&#39;4000 to 5000&#39;</span>,</span>
-<span id="cb6-28"><a href="descriptive-statistics.html#cb6-28" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;6&#39;</span><span class="ot">=</span><span class="st">&#39;&gt; 5000&#39;</span>)</span>
-<span id="cb6-29"><a href="descriptive-statistics.html#cb6-29" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>income, <span class="at">levels =</span> income_order, <span class="at">ordered =</span> T)</span>
-<span id="cb6-30"><a href="descriptive-statistics.html#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="descriptive-statistics.html#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#first operator</span></span>
-<span id="cb6-32"><a href="descriptive-statistics.html#cb6-32" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">na_if</span>(d2<span class="sc">$</span>first_operator, <span class="dv">9</span>)<span class="co">#no information</span></span>
-<span id="cb6-33"><a href="descriptive-statistics.html#cb6-33" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">na_if</span>(d2<span class="sc">$</span>first_operator, <span class="dv">10</span>) <span class="co">#drivenow</span></span>
-<span id="cb6-34"><a href="descriptive-statistics.html#cb6-34" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">na_if</span>(d2<span class="sc">$</span>first_operator, <span class="dv">11</span>) <span class="co">#flinkster</span></span>
-<span id="cb6-35"><a href="descriptive-statistics.html#cb6-35" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">na_if</span>(d2<span class="sc">$</span>first_operator, <span class="dv">99</span>) <span class="co">#other</span></span>
-<span id="cb6-36"><a href="descriptive-statistics.html#cb6-36" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>first_operator)</span>
-<span id="cb6-37"><a href="descriptive-statistics.html#cb6-37" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>first_operator, </span>
-<span id="cb6-38"><a href="descriptive-statistics.html#cb6-38" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;COMB&#39;</span>, <span class="co">#book n drive     </span></span>
-<span id="cb6-39"><a href="descriptive-statistics.html#cb6-39" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;RTSB_B&#39;</span>, <span class="co">#stadmobil,</span></span>
-<span id="cb6-40"><a href="descriptive-statistics.html#cb6-40" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;RTSB_A&#39;</span>,<span class="co">#cambio</span></span>
-<span id="cb6-41"><a href="descriptive-statistics.html#cb6-41" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;RTSB_B&#39;</span>, <span class="co">#stadmobil</span></span>
-<span id="cb6-42"><a href="descriptive-statistics.html#cb6-42" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;5&#39;</span><span class="ot">=</span><span class="st">&#39;FF&#39;</span>, <span class="co">#car2go</span></span>
-<span id="cb6-43"><a href="descriptive-statistics.html#cb6-43" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;6&#39;</span><span class="ot">=</span><span class="st">&#39;P2P&#39;</span> <span class="co">#drivy</span></span>
-<span id="cb6-44"><a href="descriptive-statistics.html#cb6-44" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb6-45"><a href="descriptive-statistics.html#cb6-45" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>first_operator, <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-46"><a href="descriptive-statistics.html#cb6-46" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>first_operator <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(d2<span class="sc">$</span>first_operator)</span>
-<span id="cb6-47"><a href="descriptive-statistics.html#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-48"><a href="descriptive-statistics.html#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#education</span></span>
-<span id="cb6-49"><a href="descriptive-statistics.html#cb6-49" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">na_if</span>(d2<span class="sc">$</span>education, <span class="dv">9</span>)</span>
-<span id="cb6-50"><a href="descriptive-statistics.html#cb6-50" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>education)</span>
-<span id="cb6-51"><a href="descriptive-statistics.html#cb6-51" aria-hidden="true" tabindex="-1"></a>education_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;Secondary school 1&#39;</span>,</span>
-<span id="cb6-52"><a href="descriptive-statistics.html#cb6-52" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;Secondary school 2&#39;</span>,</span>
-<span id="cb6-53"><a href="descriptive-statistics.html#cb6-53" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;High school&#39;</span>,</span>
-<span id="cb6-54"><a href="descriptive-statistics.html#cb6-54" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;University&#39;</span>)</span>
-<span id="cb6-55"><a href="descriptive-statistics.html#cb6-55" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>education <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>education, </span>
-<span id="cb6-56"><a href="descriptive-statistics.html#cb6-56" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;Secondary school 1&#39;</span>,</span>
-<span id="cb6-57"><a href="descriptive-statistics.html#cb6-57" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;Secondary school 2&#39;</span>,</span>
-<span id="cb6-58"><a href="descriptive-statistics.html#cb6-58" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;High school&#39;</span>,</span>
-<span id="cb6-59"><a href="descriptive-statistics.html#cb6-59" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;University&#39;</span>)</span>
-<span id="cb6-60"><a href="descriptive-statistics.html#cb6-60" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>education, <span class="at">levels =</span> education_order, <span class="at">ordered =</span> T)</span>
-<span id="cb6-61"><a href="descriptive-statistics.html#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-62"><a href="descriptive-statistics.html#cb6-62" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>public_transport <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>public_transport) </span>
-<span id="cb6-63"><a href="descriptive-statistics.html#cb6-63" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>public_transport <span class="ot">&lt;-</span>  dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>public_transport, </span>
-<span id="cb6-64"><a href="descriptive-statistics.html#cb6-64" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;Yes&#39;</span>,   </span>
-<span id="cb6-65"><a href="descriptive-statistics.html#cb6-65" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;No&#39;</span>)</span>
-<span id="cb6-66"><a href="descriptive-statistics.html#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="descriptive-statistics.html#cb6-67" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>city <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>city) </span>
-<span id="cb6-68"><a href="descriptive-statistics.html#cb6-68" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>city <span class="ot">&lt;-</span>  dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>city, </span>
-<span id="cb6-69"><a href="descriptive-statistics.html#cb6-69" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;Frankfurt&#39;</span>,   </span>
-<span id="cb6-70"><a href="descriptive-statistics.html#cb6-70" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;Köln&#39;</span>,</span>
-<span id="cb6-71"><a href="descriptive-statistics.html#cb6-71" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;Stuttgart&#39;</span>,</span>
-<span id="cb6-72"><a href="descriptive-statistics.html#cb6-72" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;Others&#39;</span>)</span>
-<span id="cb6-73"><a href="descriptive-statistics.html#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-74"><a href="descriptive-statistics.html#cb6-74" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>n_cars <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>n_cars)</span>
-<span id="cb6-75"><a href="descriptive-statistics.html#cb6-75" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>n_cars <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>n_cars, </span>
-<span id="cb6-76"><a href="descriptive-statistics.html#cb6-76" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;One car&#39;</span>,</span>
-<span id="cb6-77"><a href="descriptive-statistics.html#cb6-77" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;Two cars&#39;</span>,</span>
-<span id="cb6-78"><a href="descriptive-statistics.html#cb6-78" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;Three or more cars&#39;</span>,</span>
-<span id="cb6-79"><a href="descriptive-statistics.html#cb6-79" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;No car&#39;</span>)</span>
-<span id="cb6-80"><a href="descriptive-statistics.html#cb6-80" aria-hidden="true" tabindex="-1"></a>n_car_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;No car&#39;</span>,</span>
-<span id="cb6-81"><a href="descriptive-statistics.html#cb6-81" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;One car&#39;</span>,</span>
-<span id="cb6-82"><a href="descriptive-statistics.html#cb6-82" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;Two cars&#39;</span>,</span>
-<span id="cb6-83"><a href="descriptive-statistics.html#cb6-83" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;Three or more cars&#39;</span>)</span>
-<span id="cb6-84"><a href="descriptive-statistics.html#cb6-84" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>n_cars <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>n_cars, <span class="at">levels =</span> n_car_order, <span class="at">ordered =</span> T)</span>
-<span id="cb6-85"><a href="descriptive-statistics.html#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-86"><a href="descriptive-statistics.html#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-87"><a href="descriptive-statistics.html#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-88"><a href="descriptive-statistics.html#cb6-88" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>n_cars_no_cs <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>n_cars_no_cs)</span>
-<span id="cb6-89"><a href="descriptive-statistics.html#cb6-89" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>n_cars_no_cs <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>n_cars_no_cs, </span>
-<span id="cb6-90"><a href="descriptive-statistics.html#cb6-90" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;One car&#39;</span>,</span>
-<span id="cb6-91"><a href="descriptive-statistics.html#cb6-91" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;Two cars&#39;</span>,</span>
-<span id="cb6-92"><a href="descriptive-statistics.html#cb6-92" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;Three or more cars&#39;</span>,</span>
-<span id="cb6-93"><a href="descriptive-statistics.html#cb6-93" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;No car&#39;</span>,</span>
-<span id="cb6-94"><a href="descriptive-statistics.html#cb6-94" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;5&#39;</span><span class="ot">=</span><span class="st">&#39;Do not know&#39;</span>)</span>
-<span id="cb6-95"><a href="descriptive-statistics.html#cb6-95" aria-hidden="true" tabindex="-1"></a>n_cars_no_cs_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;No car&#39;</span>,</span>
-<span id="cb6-96"><a href="descriptive-statistics.html#cb6-96" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;One car&#39;</span>,</span>
-<span id="cb6-97"><a href="descriptive-statistics.html#cb6-97" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;Two cars&#39;</span>,</span>
-<span id="cb6-98"><a href="descriptive-statistics.html#cb6-98" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;Three or more cars&#39;</span>,</span>
-<span id="cb6-99"><a href="descriptive-statistics.html#cb6-99" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;Do not know&#39;</span>)</span>
-<span id="cb6-100"><a href="descriptive-statistics.html#cb6-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-101"><a href="descriptive-statistics.html#cb6-101" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>n_cars_no_cs <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>n_cars_no_cs, <span class="at">levels =</span> n_cars_no_cs_order, <span class="at">ordered =</span> T)</span>
-<span id="cb6-102"><a href="descriptive-statistics.html#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-103"><a href="descriptive-statistics.html#cb6-103" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>children <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>children) </span>
-<span id="cb6-104"><a href="descriptive-statistics.html#cb6-104" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>children <span class="ot">&lt;-</span>  dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>children, </span>
-<span id="cb6-105"><a href="descriptive-statistics.html#cb6-105" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;0&#39;</span><span class="ot">=</span><span class="st">&#39;Yes&#39;</span>,   </span>
-<span id="cb6-106"><a href="descriptive-statistics.html#cb6-106" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;No&#39;</span>)</span>
-<span id="cb6-107"><a href="descriptive-statistics.html#cb6-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-108"><a href="descriptive-statistics.html#cb6-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-109"><a href="descriptive-statistics.html#cb6-109" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>household_size <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>household_size)</span>
-<span id="cb6-110"><a href="descriptive-statistics.html#cb6-110" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>household_size <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>household_size, </span>
-<span id="cb6-111"><a href="descriptive-statistics.html#cb6-111" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;1&#39;</span>,</span>
-<span id="cb6-112"><a href="descriptive-statistics.html#cb6-112" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;2&#39;</span>,</span>
-<span id="cb6-113"><a href="descriptive-statistics.html#cb6-113" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;3&#39;</span>,</span>
-<span id="cb6-114"><a href="descriptive-statistics.html#cb6-114" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;4&#39;</span>,</span>
-<span id="cb6-115"><a href="descriptive-statistics.html#cb6-115" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;5&#39;</span><span class="ot">=</span><span class="st">&#39;&gt; 5&#39;</span>)</span>
-<span id="cb6-116"><a href="descriptive-statistics.html#cb6-116" aria-hidden="true" tabindex="-1"></a>household_size_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;1&#39;</span>,<span class="st">&#39;2&#39;</span>,<span class="st">&#39;3&#39;</span>,<span class="st">&#39;4&#39;</span>,<span class="st">&#39;&gt; 5&#39;</span>)</span>
-<span id="cb6-117"><a href="descriptive-statistics.html#cb6-117" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>household_size <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>household_size, <span class="at">levels =</span> household_size_order, <span class="at">ordered =</span> T)</span>
-<span id="cb6-118"><a href="descriptive-statistics.html#cb6-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-119"><a href="descriptive-statistics.html#cb6-119" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>frequency_modes <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>frequency_modes)</span>
-<span id="cb6-120"><a href="descriptive-statistics.html#cb6-120" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>frequency_modes <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>frequency_modes, </span>
-<span id="cb6-121"><a href="descriptive-statistics.html#cb6-121" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;Daily&#39;</span>,</span>
-<span id="cb6-122"><a href="descriptive-statistics.html#cb6-122" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;4-6 days a week&#39;</span>,</span>
-<span id="cb6-123"><a href="descriptive-statistics.html#cb6-123" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;1-3 days a week&#39;</span>,</span>
-<span id="cb6-124"><a href="descriptive-statistics.html#cb6-124" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;Do not know&#39;</span>)</span>
-<span id="cb6-125"><a href="descriptive-statistics.html#cb6-125" aria-hidden="true" tabindex="-1"></a>frequency_modes_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;Daily&#39;</span>,<span class="st">&#39;4-6 days a week&#39;</span>,<span class="st">&#39;1-3 days a week&#39;</span>,<span class="st">&#39;Do not know&#39;</span>)</span>
-<span id="cb6-126"><a href="descriptive-statistics.html#cb6-126" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>frequency_modes <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>frequency_modes, <span class="at">levels =</span> frequency_modes_order, <span class="at">ordered =</span> T)</span>
-<span id="cb6-127"><a href="descriptive-statistics.html#cb6-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-128"><a href="descriptive-statistics.html#cb6-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-129"><a href="descriptive-statistics.html#cb6-129" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>frequency_modes_before_cs <span class="ot">&lt;-</span> <span class="fu">as.character</span>(d2<span class="sc">$</span>frequency_modes_before_cs)</span>
-<span id="cb6-130"><a href="descriptive-statistics.html#cb6-130" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>frequency_modes_before_cs <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(d2<span class="sc">$</span>frequency_modes_before_cs, </span>
-<span id="cb6-131"><a href="descriptive-statistics.html#cb6-131" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;1&#39;</span><span class="ot">=</span><span class="st">&#39;Less often than today&#39;</span>,</span>
-<span id="cb6-132"><a href="descriptive-statistics.html#cb6-132" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;2&#39;</span><span class="ot">=</span><span class="st">&#39;About as often as today&#39;</span>,</span>
-<span id="cb6-133"><a href="descriptive-statistics.html#cb6-133" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;3&#39;</span><span class="ot">=</span><span class="st">&#39;More often than today&#39;</span>,</span>
-<span id="cb6-134"><a href="descriptive-statistics.html#cb6-134" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;4&#39;</span><span class="ot">=</span><span class="st">&#39;Less frequently&#39;</span>,</span>
-<span id="cb6-135"><a href="descriptive-statistics.html#cb6-135" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;5&#39;</span><span class="ot">=</span><span class="st">&#39;Never&#39;</span>)</span>
-<span id="cb6-136"><a href="descriptive-statistics.html#cb6-136" aria-hidden="true" tabindex="-1"></a>frequency_modes_before_cs_order <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;Daily&#39;</span>,<span class="st">&#39;4-6 days a week&#39;</span>,<span class="st">&#39;1-3 days a week&#39;</span>,<span class="st">&#39;Less frequently&#39;</span>,<span class="st">&#39;Never&#39;</span>)</span>
-<span id="cb6-137"><a href="descriptive-statistics.html#cb6-137" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">$</span>frequency_modes_before_cs <span class="ot">&lt;-</span> <span class="fu">factor</span>(d2<span class="sc">$</span>frequency_modes_before_cs, <span class="at">levels =</span> frequency_modes_before_cs_order, <span class="at">ordered =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="descriptive-statistics.html#cb6-1"></a>d2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">sapply</span>(d1, as.numeric))</span>
+<span id="cb6-2"><a href="descriptive-statistics.html#cb6-2"></a><span class="co">#gender</span></span>
+<span id="cb6-3"><a href="descriptive-statistics.html#cb6-3"></a>d2<span class="op">$</span>gender&lt;-<span class="kw">as.character</span>(d2<span class="op">$</span>gender)</span>
+<span id="cb6-4"><a href="descriptive-statistics.html#cb6-4"></a>d2<span class="op">$</span>gender &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>gender, </span>
+<span id="cb6-5"><a href="descriptive-statistics.html#cb6-5"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;Male&#39;</span>,</span>
+<span id="cb6-6"><a href="descriptive-statistics.html#cb6-6"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;Female&#39;</span>,</span>
+<span id="cb6-7"><a href="descriptive-statistics.html#cb6-7"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;Other&#39;</span>)</span>
+<span id="cb6-8"><a href="descriptive-statistics.html#cb6-8"></a>d2<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">as.factor</span>(d2<span class="op">$</span>gender)</span>
+<span id="cb6-9"><a href="descriptive-statistics.html#cb6-9"></a><span class="co">#age</span></span>
+<span id="cb6-10"><a href="descriptive-statistics.html#cb6-10"></a>d2<span class="op">$</span>age &lt;-<span class="st"> </span><span class="dv">2019</span> <span class="op">-</span><span class="st"> </span>d2<span class="op">$</span>age</span>
+<span id="cb6-11"><a href="descriptive-statistics.html#cb6-11"></a>d2<span class="op">$</span>age_c &lt;-<span class="st"> </span><span class="kw">scale</span>(d2<span class="op">$</span>age)</span>
+<span id="cb6-12"><a href="descriptive-statistics.html#cb6-12"></a></span>
+<span id="cb6-13"><a href="descriptive-statistics.html#cb6-13"></a><span class="co">#income</span></span>
+<span id="cb6-14"><a href="descriptive-statistics.html#cb6-14"></a>d2<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">na_if</span>(d2<span class="op">$</span>income, <span class="dv">9</span>)</span>
+<span id="cb6-15"><a href="descriptive-statistics.html#cb6-15"></a>d2<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>income)</span>
+<span id="cb6-16"><a href="descriptive-statistics.html#cb6-16"></a>income_order &lt;-<span class="kw">c</span>(<span class="st">&#39;&lt; 1000&#39;</span>,</span>
+<span id="cb6-17"><a href="descriptive-statistics.html#cb6-17"></a>                 <span class="st">&#39;1000 to 2000&#39;</span>,</span>
+<span id="cb6-18"><a href="descriptive-statistics.html#cb6-18"></a>                 <span class="st">&#39;2000 to 3000&#39;</span>,</span>
+<span id="cb6-19"><a href="descriptive-statistics.html#cb6-19"></a>                 <span class="st">&#39;3000 to 4000&#39;</span>,</span>
+<span id="cb6-20"><a href="descriptive-statistics.html#cb6-20"></a>                 <span class="st">&#39;4000 to 5000&#39;</span>,</span>
+<span id="cb6-21"><a href="descriptive-statistics.html#cb6-21"></a>                 <span class="st">&#39;&gt; 5000&#39;</span>)</span>
+<span id="cb6-22"><a href="descriptive-statistics.html#cb6-22"></a>d2<span class="op">$</span>income &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>income, </span>
+<span id="cb6-23"><a href="descriptive-statistics.html#cb6-23"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;&lt; 1000&#39;</span>,</span>
+<span id="cb6-24"><a href="descriptive-statistics.html#cb6-24"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;1000 to 2000&#39;</span>,</span>
+<span id="cb6-25"><a href="descriptive-statistics.html#cb6-25"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;2000 to 3000&#39;</span>,</span>
+<span id="cb6-26"><a href="descriptive-statistics.html#cb6-26"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;3000 to 4000&#39;</span>,</span>
+<span id="cb6-27"><a href="descriptive-statistics.html#cb6-27"></a>                 <span class="st">&#39;5&#39;</span>=<span class="st">&#39;4000 to 5000&#39;</span>,</span>
+<span id="cb6-28"><a href="descriptive-statistics.html#cb6-28"></a>                 <span class="st">&#39;6&#39;</span>=<span class="st">&#39;&gt; 5000&#39;</span>)</span>
+<span id="cb6-29"><a href="descriptive-statistics.html#cb6-29"></a>d2<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>income, <span class="dt">levels =</span> income_order, <span class="dt">ordered =</span> T)</span>
+<span id="cb6-30"><a href="descriptive-statistics.html#cb6-30"></a></span>
+<span id="cb6-31"><a href="descriptive-statistics.html#cb6-31"></a><span class="co">#first operator</span></span>
+<span id="cb6-32"><a href="descriptive-statistics.html#cb6-32"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">na_if</span>(d2<span class="op">$</span>first_operator, <span class="dv">9</span>)<span class="co">#no information</span></span>
+<span id="cb6-33"><a href="descriptive-statistics.html#cb6-33"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">na_if</span>(d2<span class="op">$</span>first_operator, <span class="dv">10</span>) <span class="co">#drivenow</span></span>
+<span id="cb6-34"><a href="descriptive-statistics.html#cb6-34"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">na_if</span>(d2<span class="op">$</span>first_operator, <span class="dv">11</span>) <span class="co">#flinkster</span></span>
+<span id="cb6-35"><a href="descriptive-statistics.html#cb6-35"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">na_if</span>(d2<span class="op">$</span>first_operator, <span class="dv">99</span>) <span class="co">#other</span></span>
+<span id="cb6-36"><a href="descriptive-statistics.html#cb6-36"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>first_operator)</span>
+<span id="cb6-37"><a href="descriptive-statistics.html#cb6-37"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>first_operator, </span>
+<span id="cb6-38"><a href="descriptive-statistics.html#cb6-38"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;COMB&#39;</span>, <span class="co">#book n drive     </span></span>
+<span id="cb6-39"><a href="descriptive-statistics.html#cb6-39"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;RTSB_B&#39;</span>, <span class="co">#stadmobil,</span></span>
+<span id="cb6-40"><a href="descriptive-statistics.html#cb6-40"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;RTSB_A&#39;</span>,<span class="co">#cambio</span></span>
+<span id="cb6-41"><a href="descriptive-statistics.html#cb6-41"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;RTSB_B&#39;</span>, <span class="co">#stadmobil</span></span>
+<span id="cb6-42"><a href="descriptive-statistics.html#cb6-42"></a>                 <span class="st">&#39;5&#39;</span>=<span class="st">&#39;FF&#39;</span>, <span class="co">#car2go</span></span>
+<span id="cb6-43"><a href="descriptive-statistics.html#cb6-43"></a>                 <span class="st">&#39;6&#39;</span>=<span class="st">&#39;P2P&#39;</span> <span class="co">#drivy</span></span>
+<span id="cb6-44"><a href="descriptive-statistics.html#cb6-44"></a>                 )</span>
+<span id="cb6-45"><a href="descriptive-statistics.html#cb6-45"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>first_operator, <span class="dt">ordered =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb6-46"><a href="descriptive-statistics.html#cb6-46"></a>d2<span class="op">$</span>first_operator &lt;-<span class="st"> </span><span class="kw">as.factor</span>(d2<span class="op">$</span>first_operator)</span>
+<span id="cb6-47"><a href="descriptive-statistics.html#cb6-47"></a></span>
+<span id="cb6-48"><a href="descriptive-statistics.html#cb6-48"></a><span class="co">#education</span></span>
+<span id="cb6-49"><a href="descriptive-statistics.html#cb6-49"></a>d2<span class="op">$</span>education &lt;-<span class="st"> </span><span class="kw">na_if</span>(d2<span class="op">$</span>education, <span class="dv">9</span>)</span>
+<span id="cb6-50"><a href="descriptive-statistics.html#cb6-50"></a>d2<span class="op">$</span>education &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>education)</span>
+<span id="cb6-51"><a href="descriptive-statistics.html#cb6-51"></a>education_order &lt;-<span class="kw">c</span>(<span class="st">&#39;Secondary school 1&#39;</span>,</span>
+<span id="cb6-52"><a href="descriptive-statistics.html#cb6-52"></a>                 <span class="st">&#39;Secondary school 2&#39;</span>,</span>
+<span id="cb6-53"><a href="descriptive-statistics.html#cb6-53"></a>                 <span class="st">&#39;High school&#39;</span>,</span>
+<span id="cb6-54"><a href="descriptive-statistics.html#cb6-54"></a>                 <span class="st">&#39;University&#39;</span>)</span>
+<span id="cb6-55"><a href="descriptive-statistics.html#cb6-55"></a>d2<span class="op">$</span>education &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>education, </span>
+<span id="cb6-56"><a href="descriptive-statistics.html#cb6-56"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;Secondary school 1&#39;</span>,</span>
+<span id="cb6-57"><a href="descriptive-statistics.html#cb6-57"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;Secondary school 2&#39;</span>,</span>
+<span id="cb6-58"><a href="descriptive-statistics.html#cb6-58"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;High school&#39;</span>,</span>
+<span id="cb6-59"><a href="descriptive-statistics.html#cb6-59"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;University&#39;</span>)</span>
+<span id="cb6-60"><a href="descriptive-statistics.html#cb6-60"></a>d2<span class="op">$</span>education &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>education, <span class="dt">levels =</span> education_order, <span class="dt">ordered =</span> T)</span>
+<span id="cb6-61"><a href="descriptive-statistics.html#cb6-61"></a></span>
+<span id="cb6-62"><a href="descriptive-statistics.html#cb6-62"></a>d2<span class="op">$</span>public_transport &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>public_transport) </span>
+<span id="cb6-63"><a href="descriptive-statistics.html#cb6-63"></a>d2<span class="op">$</span>public_transport &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>public_transport, </span>
+<span id="cb6-64"><a href="descriptive-statistics.html#cb6-64"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;Yes&#39;</span>,   </span>
+<span id="cb6-65"><a href="descriptive-statistics.html#cb6-65"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;No&#39;</span>)</span>
+<span id="cb6-66"><a href="descriptive-statistics.html#cb6-66"></a></span>
+<span id="cb6-67"><a href="descriptive-statistics.html#cb6-67"></a>d2<span class="op">$</span>city &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>city) </span>
+<span id="cb6-68"><a href="descriptive-statistics.html#cb6-68"></a>d2<span class="op">$</span>city &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>city, </span>
+<span id="cb6-69"><a href="descriptive-statistics.html#cb6-69"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;Frankfurt&#39;</span>,   </span>
+<span id="cb6-70"><a href="descriptive-statistics.html#cb6-70"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;Köln&#39;</span>,</span>
+<span id="cb6-71"><a href="descriptive-statistics.html#cb6-71"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;Stuttgart&#39;</span>,</span>
+<span id="cb6-72"><a href="descriptive-statistics.html#cb6-72"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;Others&#39;</span>)</span>
+<span id="cb6-73"><a href="descriptive-statistics.html#cb6-73"></a></span>
+<span id="cb6-74"><a href="descriptive-statistics.html#cb6-74"></a>d2<span class="op">$</span>n_cars &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>n_cars)</span>
+<span id="cb6-75"><a href="descriptive-statistics.html#cb6-75"></a>d2<span class="op">$</span>n_cars &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>n_cars, </span>
+<span id="cb6-76"><a href="descriptive-statistics.html#cb6-76"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;One car&#39;</span>,</span>
+<span id="cb6-77"><a href="descriptive-statistics.html#cb6-77"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;Two cars&#39;</span>,</span>
+<span id="cb6-78"><a href="descriptive-statistics.html#cb6-78"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;Three or more cars&#39;</span>,</span>
+<span id="cb6-79"><a href="descriptive-statistics.html#cb6-79"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;No car&#39;</span>)</span>
+<span id="cb6-80"><a href="descriptive-statistics.html#cb6-80"></a>n_car_order &lt;-<span class="kw">c</span>(<span class="st">&#39;No car&#39;</span>,</span>
+<span id="cb6-81"><a href="descriptive-statistics.html#cb6-81"></a>                 <span class="st">&#39;One car&#39;</span>,</span>
+<span id="cb6-82"><a href="descriptive-statistics.html#cb6-82"></a>                 <span class="st">&#39;Two cars&#39;</span>,</span>
+<span id="cb6-83"><a href="descriptive-statistics.html#cb6-83"></a>                 <span class="st">&#39;Three or more cars&#39;</span>)</span>
+<span id="cb6-84"><a href="descriptive-statistics.html#cb6-84"></a>d2<span class="op">$</span>n_cars &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>n_cars, <span class="dt">levels =</span> n_car_order, <span class="dt">ordered =</span> T)</span>
+<span id="cb6-85"><a href="descriptive-statistics.html#cb6-85"></a></span>
+<span id="cb6-86"><a href="descriptive-statistics.html#cb6-86"></a></span>
+<span id="cb6-87"><a href="descriptive-statistics.html#cb6-87"></a></span>
+<span id="cb6-88"><a href="descriptive-statistics.html#cb6-88"></a>d2<span class="op">$</span>n_cars_no_cs &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>n_cars_no_cs)</span>
+<span id="cb6-89"><a href="descriptive-statistics.html#cb6-89"></a>d2<span class="op">$</span>n_cars_no_cs &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>n_cars_no_cs, </span>
+<span id="cb6-90"><a href="descriptive-statistics.html#cb6-90"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;One car&#39;</span>,</span>
+<span id="cb6-91"><a href="descriptive-statistics.html#cb6-91"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;Two cars&#39;</span>,</span>
+<span id="cb6-92"><a href="descriptive-statistics.html#cb6-92"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;Three or more cars&#39;</span>,</span>
+<span id="cb6-93"><a href="descriptive-statistics.html#cb6-93"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;No car&#39;</span>,</span>
+<span id="cb6-94"><a href="descriptive-statistics.html#cb6-94"></a>                 <span class="st">&#39;5&#39;</span>=<span class="st">&#39;Do not know&#39;</span>)</span>
+<span id="cb6-95"><a href="descriptive-statistics.html#cb6-95"></a>n_cars_no_cs_order &lt;-<span class="kw">c</span>(<span class="st">&#39;No car&#39;</span>,</span>
+<span id="cb6-96"><a href="descriptive-statistics.html#cb6-96"></a>                 <span class="st">&#39;One car&#39;</span>,</span>
+<span id="cb6-97"><a href="descriptive-statistics.html#cb6-97"></a>                 <span class="st">&#39;Two cars&#39;</span>,</span>
+<span id="cb6-98"><a href="descriptive-statistics.html#cb6-98"></a>                 <span class="st">&#39;Three or more cars&#39;</span>,</span>
+<span id="cb6-99"><a href="descriptive-statistics.html#cb6-99"></a>                 <span class="st">&#39;Do not know&#39;</span>)</span>
+<span id="cb6-100"><a href="descriptive-statistics.html#cb6-100"></a></span>
+<span id="cb6-101"><a href="descriptive-statistics.html#cb6-101"></a>d2<span class="op">$</span>n_cars_no_cs &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>n_cars_no_cs, <span class="dt">levels =</span> n_cars_no_cs_order, <span class="dt">ordered =</span> T)</span>
+<span id="cb6-102"><a href="descriptive-statistics.html#cb6-102"></a></span>
+<span id="cb6-103"><a href="descriptive-statistics.html#cb6-103"></a>d2<span class="op">$</span>children &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>children) </span>
+<span id="cb6-104"><a href="descriptive-statistics.html#cb6-104"></a>d2<span class="op">$</span>children &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>children, </span>
+<span id="cb6-105"><a href="descriptive-statistics.html#cb6-105"></a>                 <span class="st">&#39;0&#39;</span>=<span class="st">&#39;Yes&#39;</span>,   </span>
+<span id="cb6-106"><a href="descriptive-statistics.html#cb6-106"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;No&#39;</span>)</span>
+<span id="cb6-107"><a href="descriptive-statistics.html#cb6-107"></a></span>
+<span id="cb6-108"><a href="descriptive-statistics.html#cb6-108"></a></span>
+<span id="cb6-109"><a href="descriptive-statistics.html#cb6-109"></a>d2<span class="op">$</span>household_size &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>household_size)</span>
+<span id="cb6-110"><a href="descriptive-statistics.html#cb6-110"></a>d2<span class="op">$</span>household_size &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>household_size, </span>
+<span id="cb6-111"><a href="descriptive-statistics.html#cb6-111"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;1&#39;</span>,</span>
+<span id="cb6-112"><a href="descriptive-statistics.html#cb6-112"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;2&#39;</span>,</span>
+<span id="cb6-113"><a href="descriptive-statistics.html#cb6-113"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;3&#39;</span>,</span>
+<span id="cb6-114"><a href="descriptive-statistics.html#cb6-114"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;4&#39;</span>,</span>
+<span id="cb6-115"><a href="descriptive-statistics.html#cb6-115"></a>                 <span class="st">&#39;5&#39;</span>=<span class="st">&#39;&gt; 5&#39;</span>)</span>
+<span id="cb6-116"><a href="descriptive-statistics.html#cb6-116"></a>household_size_order &lt;-<span class="kw">c</span>(<span class="st">&#39;1&#39;</span>,<span class="st">&#39;2&#39;</span>,<span class="st">&#39;3&#39;</span>,<span class="st">&#39;4&#39;</span>,<span class="st">&#39;&gt; 5&#39;</span>)</span>
+<span id="cb6-117"><a href="descriptive-statistics.html#cb6-117"></a>d2<span class="op">$</span>household_size &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>household_size, <span class="dt">levels =</span> household_size_order, <span class="dt">ordered =</span> T)</span>
+<span id="cb6-118"><a href="descriptive-statistics.html#cb6-118"></a></span>
+<span id="cb6-119"><a href="descriptive-statistics.html#cb6-119"></a>d2<span class="op">$</span>frequency_modes &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>frequency_modes)</span>
+<span id="cb6-120"><a href="descriptive-statistics.html#cb6-120"></a>d2<span class="op">$</span>frequency_modes &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>frequency_modes, </span>
+<span id="cb6-121"><a href="descriptive-statistics.html#cb6-121"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;Daily&#39;</span>,</span>
+<span id="cb6-122"><a href="descriptive-statistics.html#cb6-122"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;4-6 days a week&#39;</span>,</span>
+<span id="cb6-123"><a href="descriptive-statistics.html#cb6-123"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;1-3 days a week&#39;</span>,</span>
+<span id="cb6-124"><a href="descriptive-statistics.html#cb6-124"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;Do not know&#39;</span>)</span>
+<span id="cb6-125"><a href="descriptive-statistics.html#cb6-125"></a>frequency_modes_order &lt;-<span class="kw">c</span>(<span class="st">&#39;Daily&#39;</span>,<span class="st">&#39;4-6 days a week&#39;</span>,<span class="st">&#39;1-3 days a week&#39;</span>,<span class="st">&#39;Do not know&#39;</span>)</span>
+<span id="cb6-126"><a href="descriptive-statistics.html#cb6-126"></a>d2<span class="op">$</span>frequency_modes &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>frequency_modes, <span class="dt">levels =</span> frequency_modes_order, <span class="dt">ordered =</span> T)</span>
+<span id="cb6-127"><a href="descriptive-statistics.html#cb6-127"></a></span>
+<span id="cb6-128"><a href="descriptive-statistics.html#cb6-128"></a></span>
+<span id="cb6-129"><a href="descriptive-statistics.html#cb6-129"></a>d2<span class="op">$</span>frequency_modes_before_cs &lt;-<span class="st"> </span><span class="kw">as.character</span>(d2<span class="op">$</span>frequency_modes_before_cs)</span>
+<span id="cb6-130"><a href="descriptive-statistics.html#cb6-130"></a>d2<span class="op">$</span>frequency_modes_before_cs &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(d2<span class="op">$</span>frequency_modes_before_cs, </span>
+<span id="cb6-131"><a href="descriptive-statistics.html#cb6-131"></a>                 <span class="st">&#39;1&#39;</span>=<span class="st">&#39;Less often than today&#39;</span>,</span>
+<span id="cb6-132"><a href="descriptive-statistics.html#cb6-132"></a>                 <span class="st">&#39;2&#39;</span>=<span class="st">&#39;About as often as today&#39;</span>,</span>
+<span id="cb6-133"><a href="descriptive-statistics.html#cb6-133"></a>                 <span class="st">&#39;3&#39;</span>=<span class="st">&#39;More often than today&#39;</span>,</span>
+<span id="cb6-134"><a href="descriptive-statistics.html#cb6-134"></a>                 <span class="st">&#39;4&#39;</span>=<span class="st">&#39;Less frequently&#39;</span>,</span>
+<span id="cb6-135"><a href="descriptive-statistics.html#cb6-135"></a>                 <span class="st">&#39;5&#39;</span>=<span class="st">&#39;Never&#39;</span>)</span>
+<span id="cb6-136"><a href="descriptive-statistics.html#cb6-136"></a>frequency_modes_before_cs_order &lt;-<span class="kw">c</span>(<span class="st">&#39;Daily&#39;</span>,<span class="st">&#39;4-6 days a week&#39;</span>,<span class="st">&#39;1-3 days a week&#39;</span>,<span class="st">&#39;Less frequently&#39;</span>,<span class="st">&#39;Never&#39;</span>)</span>
+<span id="cb6-137"><a href="descriptive-statistics.html#cb6-137"></a>d2<span class="op">$</span>frequency_modes_before_cs &lt;-<span class="st"> </span><span class="kw">factor</span>(d2<span class="op">$</span>frequency_modes_before_cs, <span class="dt">levels =</span> frequency_modes_before_cs_order, <span class="dt">ordered =</span> T)</span></code></pre></div>
 </div>
-<div id="descriptive-statistics-table" class="section level2" number="2.2">
+<div id="descriptive-statistics-table" class="section level2">
 <h2><span class="header-section-number">2.2</span> Descriptive statistics table</h2>
 <p>Now let’s create a table of with the descriptive statistics.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics.html#cb7-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>city) <span class="ot">&lt;-</span>  <span class="st">&quot;City&quot;</span></span>
-<span id="cb7-2"><a href="descriptive-statistics.html#cb7-2" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>age) <span class="ot">&lt;-</span> <span class="st">&quot;Age&quot;</span> </span>
-<span id="cb7-3"><a href="descriptive-statistics.html#cb7-3" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>gender) <span class="ot">&lt;-</span> <span class="st">&quot;Gender&quot;</span></span>
-<span id="cb7-4"><a href="descriptive-statistics.html#cb7-4" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>education) <span class="ot">&lt;-</span> <span class="st">&quot;Education&quot;</span></span>
-<span id="cb7-5"><a href="descriptive-statistics.html#cb7-5" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>income) <span class="ot">&lt;-</span> <span class="st">&quot;Household income before taxes (euro)&quot;</span></span>
-<span id="cb7-6"><a href="descriptive-statistics.html#cb7-6" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>household_size) <span class="ot">&lt;-</span> <span class="st">&quot;Household (number of persons cohabiting)&quot;</span></span>
-<span id="cb7-7"><a href="descriptive-statistics.html#cb7-7" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>children) <span class="ot">&lt;-</span> <span class="st">&quot;Presence of children in the household&quot;</span></span>
-<span id="cb7-8"><a href="descriptive-statistics.html#cb7-8" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>n_cars) <span class="ot">&lt;-</span>  <span class="st">&quot;Current number of cars in the household with carsharing membership&quot;</span></span>
-<span id="cb7-9"><a href="descriptive-statistics.html#cb7-9" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>n_cars_no_cs) <span class="ot">&lt;-</span> <span class="st">&quot;Expected number of cars in the household without carsharing membership&quot;</span></span>
-<span id="cb7-10"><a href="descriptive-statistics.html#cb7-10" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>frequency_modes) <span class="ot">&lt;-</span> <span class="st">&quot;Frequency of use of private car&quot;</span></span>
-<span id="cb7-11"><a href="descriptive-statistics.html#cb7-11" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>public_transport) <span class="ot">&lt;-</span> <span class="st">&quot;Ownership of monthly PT ticket&quot;</span></span>
-<span id="cb7-12"><a href="descriptive-statistics.html#cb7-12" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(d2<span class="sc">$</span>first_operator) <span class="ot">&lt;-</span> <span class="st">&quot;Main carsharing operator&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics.html#cb8-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> city<span class="sc">+</span>age<span class="sc">+</span>gender<span class="sc">+</span>education<span class="sc">+</span>income<span class="sc">+</span>household_size<span class="sc">+</span>children, <span class="at">data=</span>d2,<span class="at">caption=</span><span class="st">&quot;Socio-demographic descriptive statistics of the sample&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">t1kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics.html#cb7-1"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>city) &lt;-<span class="st">  &quot;City&quot;</span></span>
+<span id="cb7-2"><a href="descriptive-statistics.html#cb7-2"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>age) &lt;-<span class="st"> &quot;Age&quot;</span> </span>
+<span id="cb7-3"><a href="descriptive-statistics.html#cb7-3"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>gender) &lt;-<span class="st"> &quot;Gender&quot;</span></span>
+<span id="cb7-4"><a href="descriptive-statistics.html#cb7-4"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>education) &lt;-<span class="st"> &quot;Education&quot;</span></span>
+<span id="cb7-5"><a href="descriptive-statistics.html#cb7-5"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>income) &lt;-<span class="st"> &quot;Household income before taxes (euro)&quot;</span></span>
+<span id="cb7-6"><a href="descriptive-statistics.html#cb7-6"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>household_size) &lt;-<span class="st"> &quot;Household (number of persons cohabiting)&quot;</span></span>
+<span id="cb7-7"><a href="descriptive-statistics.html#cb7-7"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>children) &lt;-<span class="st"> &quot;Presence of children in the household&quot;</span></span>
+<span id="cb7-8"><a href="descriptive-statistics.html#cb7-8"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>n_cars) &lt;-<span class="st">  &quot;Current number of cars in the household with carsharing membership&quot;</span></span>
+<span id="cb7-9"><a href="descriptive-statistics.html#cb7-9"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>n_cars_no_cs) &lt;-<span class="st"> &quot;Expected number of cars in the household without carsharing membership&quot;</span></span>
+<span id="cb7-10"><a href="descriptive-statistics.html#cb7-10"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>frequency_modes) &lt;-<span class="st"> &quot;Frequency of use of private car&quot;</span></span>
+<span id="cb7-11"><a href="descriptive-statistics.html#cb7-11"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>public_transport) &lt;-<span class="st"> &quot;Ownership of monthly PT ticket&quot;</span></span>
+<span id="cb7-12"><a href="descriptive-statistics.html#cb7-12"></a>table1<span class="op">::</span><span class="kw">label</span>(d2<span class="op">$</span>first_operator) &lt;-<span class="st"> &quot;Main carsharing operator&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics.html#cb8-1"></a>table1<span class="op">::</span><span class="kw">table1</span>(<span class="op">~</span><span class="st"> </span>city<span class="op">+</span>age<span class="op">+</span>gender<span class="op">+</span>education<span class="op">+</span>income<span class="op">+</span>household_size<span class="op">+</span>children, <span class="dt">data=</span>d2,<span class="dt">caption=</span><span class="st">&quot;Socio-demographic descriptive statistics of the sample&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t1kable</span>()</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-8">Table 2.1: </span>Socio-demographic descriptive statistics of the sample
@@ -519,7 +513,7 @@ Male
 Other
 </td>
 <td style="text-align:left;">
-8.00 (0.7%)
+8 (0.7%)
 </td>
 </tr>
 <tr>
@@ -540,7 +534,7 @@ Missing
 Secondary school 1
 </td>
 <td style="text-align:left;">
-16.0 (1.4%)
+16 (1.4%)
 </td>
 </tr>
 <tr>
@@ -548,7 +542,7 @@ Secondary school 1
 Secondary school 2
 </td>
 <td style="text-align:left;">
-87.0 (7.8%)
+87 (7.8%)
 </td>
 </tr>
 <tr>
@@ -585,7 +579,7 @@ Missing
 &lt; 1000
 </td>
 <td style="text-align:left;">
-27.0 (2.4%)
+27 (2.4%)
 </td>
 </tr>
 <tr>
@@ -678,7 +672,7 @@ Missing
 &gt; 5
 </td>
 <td style="text-align:left;">
-29.0 (2.6%)
+29 (2.6%)
 </td>
 </tr>
 <tr grouplength="2">
@@ -704,7 +698,7 @@ Yes
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics.html#cb9-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> n_cars<span class="sc">+</span>n_cars_no_cs<span class="sc">+</span>frequency_modes<span class="sc">+</span>public_transport <span class="sc">|</span> first_operator, <span class="at">data=</span>d2,<span class="at">caption=</span><span class="st">&quot;Descriptive statistics of private car use across carsharing business models&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">t1kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics.html#cb9-1"></a>table1<span class="op">::</span><span class="kw">table1</span>(<span class="op">~</span><span class="st"> </span>n_cars<span class="op">+</span>n_cars_no_cs<span class="op">+</span>frequency_modes<span class="op">+</span>public_transport <span class="op">|</span><span class="st"> </span>first_operator, <span class="dt">data=</span>d2,<span class="dt">caption=</span><span class="st">&quot;Descriptive statistics of private car use across carsharing business models&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t1kable</span>()</span></code></pre></div>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-9">Table 2.2: </span>Descriptive statistics of private car use across carsharing business models
@@ -776,7 +770,7 @@ No car
 147 (68.7%)
 </td>
 <td style="text-align:left;">
-55.0 (76.4%)
+55 (76.4%)
 </td>
 <td style="text-align:left;">
 255 (80.7%)
@@ -790,19 +784,19 @@ No car
 One car
 </td>
 <td style="text-align:left;">
-45.0 (19.9%)
+45 (19.9%)
 </td>
 <td style="text-align:left;">
 104 (41.1%)
 </td>
 <td style="text-align:left;">
-46.0 (21.5%)
+46 (21.5%)
 </td>
 <td style="text-align:left;">
-15.0 (20.8%)
+15 (20.8%)
 </td>
 <td style="text-align:left;">
-55.0 (17.4%)
+55 (17.4%)
 </td>
 <td style="text-align:left;">
 279 (24.9%)
@@ -813,22 +807,22 @@ One car
 Two cars
 </td>
 <td style="text-align:left;">
-1.00 (0.4%)
+1 (0.4%)
 </td>
 <td style="text-align:left;">
-30.0 (11.9%)
+30 (11.9%)
 </td>
 <td style="text-align:left;">
-14.0 (6.5%)
+14 (6.5%)
 </td>
 <td style="text-align:left;">
-1.00 (1.4%)
+1 (1.4%)
 </td>
 <td style="text-align:left;">
-5.00 (1.6%)
+5 (1.6%)
 </td>
 <td style="text-align:left;">
-56.0 (5.0%)
+56 (5.0%)
 </td>
 </tr>
 <tr>
@@ -839,19 +833,19 @@ Three or more cars
 0 (0%)
 </td>
 <td style="text-align:left;">
-12.0 (4.7%)
+12 (4.7%)
 </td>
 <td style="text-align:left;">
-7.00 (3.3%)
+7 (3.3%)
 </td>
 <td style="text-align:left;">
-1.00 (1.4%)
+1 (1.4%)
 </td>
 <td style="text-align:left;">
-1.00 (0.3%)
+1 (0.3%)
 </td>
 <td style="text-align:left;">
-23.0 (2.1%)
+23 (2.1%)
 </td>
 </tr>
 <tr grouplength="6">
@@ -864,16 +858,16 @@ Three or more cars
 No car
 </td>
 <td style="text-align:left;">
-69.0 (30.5%)
+69 (30.5%)
 </td>
 <td style="text-align:left;">
-46.0 (18.2%)
+46 (18.2%)
 </td>
 <td style="text-align:left;">
-71.0 (33.2%)
+71 (33.2%)
 </td>
 <td style="text-align:left;">
-18.0 (25.0%)
+18 (25.0%)
 </td>
 <td style="text-align:left;">
 124 (39.2%)
@@ -893,10 +887,10 @@ One car
 114 (45.1%)
 </td>
 <td style="text-align:left;">
-84.0 (39.3%)
+84 (39.3%)
 </td>
 <td style="text-align:left;">
-42.0 (58.3%)
+42 (58.3%)
 </td>
 <td style="text-align:left;">
 124 (39.2%)
@@ -910,22 +904,22 @@ One car
 Two cars
 </td>
 <td style="text-align:left;">
-10.0 (4.4%)
+10 (4.4%)
 </td>
 <td style="text-align:left;">
-41.0 (16.2%)
+41 (16.2%)
 </td>
 <td style="text-align:left;">
-20.0 (9.3%)
+20 (9.3%)
 </td>
 <td style="text-align:left;">
-4.00 (5.6%)
+4 (5.6%)
 </td>
 <td style="text-align:left;">
-16.0 (5.1%)
+16 (5.1%)
 </td>
 <td style="text-align:left;">
-91.0 (8.1%)
+91 (8.1%)
 </td>
 </tr>
 <tr>
@@ -936,19 +930,19 @@ Three or more cars
 0 (0%)
 </td>
 <td style="text-align:left;">
-10.0 (4.0%)
+10 (4.0%)
 </td>
 <td style="text-align:left;">
-5.00 (2.3%)
-</td>
-<td style="text-align:left;">
-0 (0%)
+5 (2.3%)
 </td>
 <td style="text-align:left;">
 0 (0%)
 </td>
 <td style="text-align:left;">
-15.0 (1.3%)
+0 (0%)
+</td>
+<td style="text-align:left;">
+15 (1.3%)
 </td>
 </tr>
 <tr>
@@ -956,19 +950,19 @@ Three or more cars
 Do not know
 </td>
 <td style="text-align:left;">
-34.0 (15.0%)
+34 (15.0%)
 </td>
 <td style="text-align:left;">
-23.0 (9.1%)
+23 (9.1%)
 </td>
 <td style="text-align:left;">
-19.0 (8.9%)
+19 (8.9%)
 </td>
 <td style="text-align:left;">
-6.00 (8.3%)
+6 (8.3%)
 </td>
 <td style="text-align:left;">
-40.0 (12.7%)
+40 (12.7%)
 </td>
 <td style="text-align:left;">
 123 (11.0%)
@@ -979,22 +973,22 @@ Do not know
 Missing
 </td>
 <td style="text-align:left;">
-7.00 (3.1%)
+7 (3.1%)
 </td>
 <td style="text-align:left;">
-19.0 (7.5%)
+19 (7.5%)
 </td>
 <td style="text-align:left;">
-15.0 (7.0%)
+15 (7.0%)
 </td>
 <td style="text-align:left;">
-2.00 (2.8%)
+2 (2.8%)
 </td>
 <td style="text-align:left;">
-12.0 (3.8%)
+12 (3.8%)
 </td>
 <td style="text-align:left;">
-88.0 (7.9%)
+88 (7.9%)
 </td>
 </tr>
 <tr grouplength="5">
@@ -1007,22 +1001,22 @@ Missing
 Daily
 </td>
 <td style="text-align:left;">
-8.00 (3.5%)
+8 (3.5%)
 </td>
 <td style="text-align:left;">
-29.0 (11.5%)
+29 (11.5%)
 </td>
 <td style="text-align:left;">
-19.0 (8.9%)
+19 (8.9%)
 </td>
 <td style="text-align:left;">
-2.00 (2.8%)
+2 (2.8%)
 </td>
 <td style="text-align:left;">
-8.00 (2.5%)
+8 (2.5%)
 </td>
 <td style="text-align:left;">
-72.0 (6.4%)
+72 (6.4%)
 </td>
 </tr>
 <tr>
@@ -1030,22 +1024,22 @@ Daily
 4-6 days a week
 </td>
 <td style="text-align:left;">
-2.00 (0.9%)
+2 (0.9%)
 </td>
 <td style="text-align:left;">
-33.0 (13.0%)
+33 (13.0%)
 </td>
 <td style="text-align:left;">
-16.0 (7.5%)
+16 (7.5%)
 </td>
 <td style="text-align:left;">
-3.00 (4.2%)
+3 (4.2%)
 </td>
 <td style="text-align:left;">
-8.00 (2.5%)
+8 (2.5%)
 </td>
 <td style="text-align:left;">
-68.0 (6.1%)
+68 (6.1%)
 </td>
 </tr>
 <tr>
@@ -1053,19 +1047,19 @@ Daily
 1-3 days a week
 </td>
 <td style="text-align:left;">
-14.0 (6.2%)
+14 (6.2%)
 </td>
 <td style="text-align:left;">
-63.0 (24.9%)
+63 (24.9%)
 </td>
 <td style="text-align:left;">
-27.0 (12.6%)
+27 (12.6%)
 </td>
 <td style="text-align:left;">
-5.00 (6.9%)
+5 (6.9%)
 </td>
 <td style="text-align:left;">
-14.0 (4.4%)
+14 (4.4%)
 </td>
 <td style="text-align:left;">
 129 (11.5%)
@@ -1076,19 +1070,19 @@ Daily
 Do not know
 </td>
 <td style="text-align:left;">
-54.0 (23.9%)
+54 (23.9%)
 </td>
 <td style="text-align:left;">
-55.0 (21.7%)
+55 (21.7%)
 </td>
 <td style="text-align:left;">
-68.0 (31.8%)
+68 (31.8%)
 </td>
 <td style="text-align:left;">
-20.0 (27.8%)
+20 (27.8%)
 </td>
 <td style="text-align:left;">
-91.0 (28.8%)
+91 (28.8%)
 </td>
 <td style="text-align:left;">
 298 (26.6%)
@@ -1102,13 +1096,13 @@ Missing
 148 (65.5%)
 </td>
 <td style="text-align:left;">
-73.0 (28.9%)
+73 (28.9%)
 </td>
 <td style="text-align:left;">
-84.0 (39.3%)
+84 (39.3%)
 </td>
 <td style="text-align:left;">
-42.0 (58.3%)
+42 (58.3%)
 </td>
 <td style="text-align:left;">
 195 (61.7%)
@@ -1127,7 +1121,7 @@ Missing
 No
 </td>
 <td style="text-align:left;">
-97.0 (42.9%)
+97 (42.9%)
 </td>
 <td style="text-align:left;">
 113 (44.7%)
@@ -1136,10 +1130,10 @@ No
 103 (48.1%)
 </td>
 <td style="text-align:left;">
-37.0 (51.4%)
+37 (51.4%)
 </td>
 <td style="text-align:left;">
-97.0 (30.7%)
+97 (30.7%)
 </td>
 <td style="text-align:left;">
 468 (41.7%)
@@ -1159,7 +1153,7 @@ Yes
 111 (51.9%)
 </td>
 <td style="text-align:left;">
-35.0 (48.6%)
+35 (48.6%)
 </td>
 <td style="text-align:left;">
 219 (69.3%)
@@ -1171,10 +1165,10 @@ Yes
 </tbody>
 </table>
 </div>
-<div id="tables-for-the-paper" class="section level2" number="2.3">
+<div id="tables-for-the-paper" class="section level2">
 <h2><span class="header-section-number">2.3</span> Tables for the paper</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="descriptive-statistics.html#cb10-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> city<span class="sc">+</span>age<span class="sc">+</span>gender<span class="sc">+</span>education<span class="sc">+</span>income<span class="sc">+</span>household_size<span class="sc">+</span>children, <span class="at">data=</span>d2,<span class="at">caption=</span><span class="st">&quot;Socio-demographic descriptive statistics of the sample&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">t1kable</span>(<span class="at">booktabs =</span> T,<span class="at">format =</span> <span class="st">&#39;latex&#39;</span>, <span class="at">label=</span><span class="st">&#39;descriptive-socio&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics.html#cb11-1" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> n_cars<span class="sc">+</span>n_cars_no_cs<span class="sc">+</span>frequency_modes<span class="sc">+</span>public_transport<span class="sc">|</span>first_operator, <span class="at">data=</span>d2,<span class="at">caption=</span><span class="st">&quot;Descriptive statistics of private car use across carsharing business models&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">t1kable</span>(<span class="at">booktabs =</span> T,<span class="at">format =</span> <span class="st">&#39;latex&#39;</span>, <span class="at">label=</span><span class="st">&#39;descriptive-car&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="descriptive-statistics.html#cb10-1"></a>table1<span class="op">::</span><span class="kw">table1</span>(<span class="op">~</span><span class="st"> </span>city<span class="op">+</span>age<span class="op">+</span>gender<span class="op">+</span>education<span class="op">+</span>income<span class="op">+</span>household_size<span class="op">+</span>children, <span class="dt">data=</span>d2,<span class="dt">caption=</span><span class="st">&quot;Socio-demographic descriptive statistics of the sample&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t1kable</span>(<span class="dt">booktabs =</span> T,<span class="dt">format =</span> <span class="st">&#39;latex&#39;</span>, <span class="dt">label=</span><span class="st">&#39;descriptive-socio&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics.html#cb11-1"></a>table1<span class="op">::</span><span class="kw">table1</span>(<span class="op">~</span><span class="st"> </span>n_cars<span class="op">+</span>n_cars_no_cs<span class="op">+</span>frequency_modes<span class="op">+</span>public_transport<span class="op">|</span>first_operator, <span class="dt">data=</span>d2,<span class="dt">caption=</span><span class="st">&quot;Descriptive statistics of private car use across carsharing business models&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t1kable</span>(<span class="dt">booktabs =</span> T,<span class="dt">format =</span> <span class="st">&#39;latex&#39;</span>, <span class="dt">label=</span><span class="st">&#39;descriptive-car&#39;</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -1188,7 +1182,6 @@ Yes
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1207,6 +1200,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1227,6 +1221,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

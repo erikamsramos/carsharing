@@ -1,5 +1,5 @@
 --- 
-title: 'Online appendix for the paper: "Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use"'
+title: 'Online appendix for the paper: "Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis"'
 author: "Érika Martins Silva Ramos, David Issa Mattos and Cecilia Jakobsson Bergstad"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,7 +9,7 @@ output:
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: 'This is the online appendix for the paper: "Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use"'
+description: 'This is the online appendix for the paper: "Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis"'
 always_allow_html: true
 ---
 
@@ -27,7 +27,7 @@ library(knitr)
 
 # Foreword
 
-This is the online appendix for the paper *"Roundtrip, free-floating and peer-to-peer: A Bayesian behavioral analysis of carsharing use"*. It contains a commented and reproducible code for all the analysis, tables and plots presented in the paper.
+This is the online appendix for the paper *"Roundtrip, free-floating and peer-to-peer carsharing: A Bayesian behavioral analysis"*. It contains a commented and reproducible code for all the analysis, tables and plots presented in the paper.
 
 ## Session info
 
